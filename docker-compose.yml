@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  frontend:
+    image: frontend
+    build:
+      context: frontend
+      dockerfile: Angular.Dockerfile
+    ports:
+      - 8081:80
