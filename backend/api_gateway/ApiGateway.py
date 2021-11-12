@@ -1,10 +1,9 @@
 from flask.app import Flask
 import flask_restful as fr
-from flask_restful import reqparse
+from flask_restful import reqparse, Resource
 from flask import request, Response
-import requests
 
-class ApiGateway(fr.Resource):
+class ApiGateway(Resource):
     def get(self):
         return {
             'data': 'aloalo',
@@ -16,6 +15,6 @@ class ApiGateway(fr.Resource):
         args = parser.parse_args()
         return args, 200
     def put(self):
-        return 
+        pass
     def delete(self):
-        return
+        pass
