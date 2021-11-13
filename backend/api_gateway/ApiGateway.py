@@ -1,13 +1,16 @@
 from flask.app import Flask
 import flask_restful as fr
 from flask_restful import reqparse, Resource
-from flask import request, Response
+from flask import request, Response, jsonify
+import requests
+import json
+
+URL = 'http://127.0.0.1:8000/'
 
 class ApiGateway(Resource):
     def get(self):
-        return {
-            'data': 'aloalo',
-        }, 400
+        res = requests.get(URL + 'user/users').json()
+        return res, 200
 
     def post(self):
         parser = reqparse.RequestParser()
