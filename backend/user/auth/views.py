@@ -1,3 +1,4 @@
+from .serializers import UserSerializer
 from .models import User
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -5,13 +6,16 @@ from rest_framework.response import Response
 # Create your views here.
 
 class UserViewSet(viewsets.ViewSet):
-    def get(self, request):
+    def get_user(self, request):
         users = User.objects.all()
-        return Response(data={'data': 'alo'} ,status=200)
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
 
-    def post(self, request):
-
-        pass
+    def registration(self, request):
+       serializer = UserSerializer(data=request.data)
+       serializer.is_valid(raise_exception=True)
+       serializer.save()
+       return Response(serializer.data, status=201)
 
     def put(self, request):
         pass
