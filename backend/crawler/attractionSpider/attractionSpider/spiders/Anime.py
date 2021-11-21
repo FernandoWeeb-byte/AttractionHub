@@ -119,8 +119,12 @@ class AnimeSpider(scrapy.Spider):
             dic[indexers[i]] = comp[comp.index(indexers[ac])+1:comp.index(indexers[nac])]
 
         for i in dic:
-            if len(dic[i])<=1:
-                dic[i] = dic[i][0]
+            try:
+                if len(dic[i])<=1:
+                    dic[i] = dic[i][0]
+            except:
+                print(dic[i])
+        
         
         # try:
         #     num_ep = int(response.css('.spaceit_pad:nth-child(16)::text').extract()[1].replace('\n',''))
