@@ -22,7 +22,7 @@ class AnimeSpider(scrapy.Spider):
         url1 = url+'wiki'
         url2 = url+'myanimelist'
         #print(url1,url2)
-        #yield scrapy.Request(url=url1, callback=self.getLink,meta={'domain':'wikipedia.org','name':'wikipedia'})
+        yield scrapy.Request(url=url1, callback=self.getLink,meta={'domain':'wikipedia.org','name':'wikipedia'})
         yield scrapy.Request(url=url2, callback=self.getLink,meta={'domain':'myanimelist.net','name':'myanimelist'})
 
 
@@ -32,12 +32,12 @@ class AnimeSpider(scrapy.Spider):
         for l in xlink.extract_links(response):
             if response.meta['domain'] in l.url:
                 links.append(l.url)
-        print(links)
+        #print(links)
         if len(links) > self.maxDep:
             lim = self.maxDep
         else:
             lim = len(links)
-        print(lim)
+        #print(lim)
         for i in range(lim):
             url = links[i]
             if url is not None:
@@ -45,8 +45,6 @@ class AnimeSpider(scrapy.Spider):
                 if response.meta['name'] == 'myanimelist':
                     yield scrapy.Request(url=url, callback=self.parse_mal)
                 elif response.meta['name'] == 'wikipedia':
-                    print('---------------------mandou request para o WIKI:------------------\n')
-                    print(url)
                     yield scrapy.Request(url=url, callback=self.parse_wiki)
 
     
