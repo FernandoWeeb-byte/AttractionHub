@@ -1,4 +1,4 @@
-# Scrapy settings for attractionSpider project
+# Scrapy settings for scrapyCrawlers project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'attractionSpider'
+BOT_NAME = 'scrapyCrawlers'
 
-SPIDER_MODULES = ['attractionSpider.spiders']
-NEWSPIDER_MODULE = 'attractionSpider.spiders'
+SPIDER_MODULES = ['scrapyCrawlers.spiders']
+NEWSPIDER_MODULE = 'scrapyCrawlers.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'attractionSpider (+http://www.yourdomain.com)'
+#USER_AGENT = 'scrapyCrawlers (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -45,13 +45,13 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'attractionSpider.middlewares.AttractionspiderSpiderMiddleware': 543,
+#    'scrapyCrawlers.middlewares.ScrapycrawlersSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'attractionSpider.middlewares.AttractionspiderDownloaderMiddleware': 543,
+#    'scrapyCrawlers.middlewares.ScrapycrawlersDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +63,7 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'attractionSpider.pipelines.AttractionspiderPipeline': 300,
+#    'scrapyCrawlers.pipelines.ScrapycrawlersPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
