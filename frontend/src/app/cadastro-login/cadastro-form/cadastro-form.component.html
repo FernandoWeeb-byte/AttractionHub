@@ -1,24 +1,23 @@
 <div class="container">
     <div class="formContainer">
         <h1 class="logo">AttractionHub</h1>
-        <form class="form">
+        <form class="form" [formGroup] = "user" (ngSubmit) = "onSubmit()">
             <mat-form-field class="example-full-width" appearance="fill">
-            
-            <input matInput placeholder="Username">
+                <input matInput placeholder="Username" formControlName="name">
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="fill">
-            
-                <input matInput placeholder="Email">
+                <input matInput placeholder="Username" formControlName="username">
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="fill">
-            
-                <input matInput type="password" placeholder="Password">
+                <input matInput placeholder="Email" formControlName="email">
             </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="password" placeholder="Password" formControlName="password">
+            </mat-form-field>
+            <div class="button-container">
+                <a routerLink="" style="font-family: Roboto;">Already have an account?</a>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!user.valid">SIGN UP</button>
+            </div>
         </form>
-
-        <div class="button-container">
-            <a routerLink="" style="font-family: Roboto;">Already have an account?</a>
-            <button mat-raised-button color="primary">SIGN UP</button>
-        </div>
     </div>
 </div>

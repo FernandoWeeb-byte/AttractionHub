@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { AuthServiceService } from 'src/app/auth-service.service';
 
 @Component({
   selector: 'app-cadastro-form',
@@ -7,7 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroFormComponent implements OnInit {
 
-  constructor() { }
+  user = new FormGroup({
+    name: new FormControl(''),
+    username: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl('')
+  });
+
+  constructor(private service: AuthServiceService) { }
+
+  onSubmit(){
+    this.service.create(this.user).subscribe(
+      success => console.log('sucesso')
+    )
+  }
 
   ngOnInit(): void {
   }

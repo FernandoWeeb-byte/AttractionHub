@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {CadastroLoginModule} from './cadastro-login/cadastro-login.module';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component'
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { SearchComponent } from './search/search.component'
     AppRoutingModule,
     BrowserAnimationsModule,
     CadastroLoginModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

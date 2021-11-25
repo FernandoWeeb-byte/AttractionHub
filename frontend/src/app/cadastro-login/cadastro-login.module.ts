@@ -8,6 +8,7 @@ import {MatInputModule} from '@angular/material/input';
 import { LoginTelaComponent } from './login-tela/login-tela.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -23,7 +24,8 @@ import { AppRoutingModule } from '../app-routing.module';
     CommonModule,
     MatButtonModule,
     MatInputModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ], 
   exports: [
     CadastroTelaComponent,
