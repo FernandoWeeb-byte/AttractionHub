@@ -20,8 +20,10 @@ class AnimeSpider(scrapy.Spider):
         url += ''.join([i+'+' for i in self.animeName])
         url1 = url+'wiki'
         url2 = url+'myanimelist'
+        url3 = url+'justwatch'
         yield scrapy.Request(url=url1, callback=self.getLink,meta={'domain':'wikipedia.org','name':'wikipedia'})
         yield scrapy.Request(url=url2, callback=self.getLink,meta={'domain':'myanimelist.net','name':'myanimelist'})
+        yield scrapy.Request(url=url3, callback=self.getLink,meta={'domain':'justwatch.com','name':'justwatch'})
 
 
     def getLink(self, response):
@@ -44,6 +46,8 @@ class AnimeSpider(scrapy.Spider):
                     yield scrapy.Request(url=url, callback=self.parse_mal)
                 elif response.meta['name'] == 'wikipedia':
                     yield scrapy.Request(url=url, callback=self.parse_wiki)
+                elif response.meta['name'] == 'justwatch':
+                    yield scrapy.Request(url=url, callback=self.parse_streaming)
 
 
     def parse_wiki(self, response):
@@ -57,6 +61,7 @@ class AnimeSpider(scrapy.Spider):
 
         jp_name = response.css('.h1_bold_none strong::text').get() #****extraindo nomes direto do site usando seletor CSS****
         en_name = response.css('.title-inherit::text').get()#****igual****
+        url_image = response.css('.borderClass div div .lazyload::attr(data-src)').get()
         en_synopsis = ''#****criando var da sinopse****
         temp = response.css('.pb16~ p::text').extract()#****criando temp var para tratar sinopse****
         temp = temp[:-1]
@@ -82,7 +87,7 @@ class AnimeSpider(scrapy.Spider):
         except:
             pass
         indexers = [i for i in infoList if ':' in i]
-        malDict = {'jp_name':jp_name, 'en_name':en_name, 'en_synopsis':en_synopsis}
+        malDict = {'jp_name':jp_name, 'en_name':en_name, 'en_synopsis':en_synopsis, 'url_image': url_image}
         for i in indexers:
             malDict[i] = None
         for i in range(len(indexers)):
@@ -101,3 +106,8 @@ class AnimeSpider(scrapy.Spider):
                 print(malDict[i])
         
         yield malDict
+
+    def parse_streaming(self,response):
+        stream = response.css('.price-comparison--block .price-comparison__grid__row__holder div div img::attr(alt)').getall()
+        streamDict = {'stream':stream}
+        yield streamDict
