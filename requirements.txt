@@ -14,6 +14,7 @@ cryptography==35.0.0
 cssselect==1.1.0
 distlib==0.3.3
 Django==3.2.9
+django-cors-headers==3.10.0
 djangorestframework==3.12.4
 filelock==3.1.0
 Flask==2.0.2
@@ -26,6 +27,7 @@ idna==3.3
 incremental==21.3.0
 itemadapter==0.4.0
 itemloaders==1.0.4
+djangorestframework-jwt==1.11.0
 itsdangerous==2.0.1
 Jinja2==3.0.3
 jmespath==0.10.0
@@ -59,3 +61,4 @@ w3lib==1.22.0
 Werkzeug==2.0.2
 wrapt==1.13.3
 zope.interface==5.4.0
+PyJWT==1.7.1
