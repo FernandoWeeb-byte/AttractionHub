@@ -1,0 +1,76 @@
+2021-12-01 00:55:17 [scrapy.utils.log] INFO: Scrapy 2.5.1 started (bot: scrapyCrawlers)
+2021-12-01 00:55:17 [scrapy.utils.log] INFO: Versions: lxml 4.6.4.0, libxml2 2.9.5, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 21.7.0, Python 3.9.9 (tags/v3.9.9:ccb0e6a, Nov 15 2021, 18:08:50) [MSC v.1929 64 bit (AMD64)], pyOpenSSL 21.0.0 (OpenSSL 1.1.1l  24 Aug 2021), cryptography 36.0.0, Platform Windows-10-10.0.19042-SP0
+2021-12-01 00:55:17 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2021-12-01 00:55:17 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'scrapyCrawlers',
+ 'LOG_FILE': 'logs\\scrapyCrawlers\\anime\\7d3d33c0525a11ec9a9f7c8ae1da3f65.log',
+ 'NEWSPIDER_MODULE': 'scrapyCrawlers.spiders',
+ 'SPIDER_MODULES': ['scrapyCrawlers.spiders']}
+2021-12-01 00:55:17 [scrapy.extensions.telnet] INFO: Telnet Password: 8e12c8ce51f22da3
+2021-12-01 00:55:17 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2021-12-01 00:55:17 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2021-12-01 00:55:17 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2021-12-01 00:55:17 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2021-12-01 00:55:17 [scrapy.core.engine] INFO: Spider opened
+2021-12-01 00:55:17 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2021-12-01 00:55:17 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2021-12-01 00:55:18 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.google.com/search?q=kimetsu+no+yaiba+anime+justwatch> (referer: None)
+2021-12-01 00:55:18 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.google.com/search?q=kimetsu+no+yaiba+anime+myanimelist> (referer: None)
+2021-12-01 00:55:18 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.google.com/search?q=kimetsu+no+yaiba+anime+wiki> (referer: None)
+2021-12-01 00:55:19 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.justwatch.com/br/serie/kimetsu-no-yaiba> from <GET https://www.google.com/url?q=https://www.justwatch.com/br/serie/kimetsu-no-yaiba&sa=U&ved=2ahUKEwjKzpij2sH0AhUXH7kGHZhgBHYQFnoECAQQAg&usg=AOvVaw2jRmD8zQNaiiBJuH4rTo8K>
+2021-12-01 00:55:19 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://myanimelist.net/anime/38000/Kimetsu_no_Yaiba> from <GET https://www.google.com/url?q=https://myanimelist.net/anime/38000/Kimetsu_no_Yaiba&sa=U&ved=2ahUKEwjzrJij2sH0AhW3IrkGHcKEAD0QFnoECAMQAg&usg=AOvVaw1f7iNS8RVtrMWftF4b-zTN>
+2021-12-01 00:55:19 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://pt.wikipedia.org/wiki/Kimetsu_no_Yaiba> from <GET https://www.google.com/url?q=https://pt.wikipedia.org/wiki/Kimetsu_no_Yaiba&sa=U&ved=2ahUKEwj2rZij2sH0AhX4LLkGHXTiCZAQFnoECAoQAg&usg=AOvVaw1DKbyf4sqDeL_zqkZcRCZ7>
+2021-12-01 00:55:19 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.justwatch.com/br/serie/kimetsu-no-yaiba> (referer: https://www.google.com/search?q=kimetsu+no+yaiba+anime+justwatch)
+2021-12-01 00:55:19 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.justwatch.com/br/serie/kimetsu-no-yaiba>
+{'stream': ['Funimation Now', 'Netflix', 'Crunchyroll']}
+2021-12-01 00:55:19 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://pt.wikipedia.org/wiki/Kimetsu_no_Yaiba> (referer: https://www.google.com/search?q=kimetsu+no+yaiba+anime+wiki)
+2021-12-01 00:55:20 [scrapy.core.scraper] DEBUG: Scraped from <200 https://pt.wikipedia.org/wiki/Kimetsu_no_Yaiba>
+{'name': 'Kimetsu no Yaiba', 'description': 'Kimetsu no Yaiba (鬼滅（きめつ）の刃（やいば）, Kimetsu no Yaiba?, lit. "Lâmina aniquiladora de demônios"), é uma série japonesa de mangá shōnen escrita e ilustrada por Koyoharu Gotōge. O mangá é serializado desde 15 de fevereiro de 2016 e foi encerrado em 18 de maio de 2020 na revista semanal Weekly Shōnen Jump, com seus capítulos sendo reunidos em 23 volumes tankōbon pela editora Shueisha. Uma adaptação da série para um anime de 26 episódios, produzida pelo estúdio ufotable, foi exibida entre 6 de abril e 28 de setembro de 2019.[1] A 2ª Temporada, produzida pelo estúdio ufotable, foi exibida entre 10 de outubro de 2021 até presente. [2]\n'}
+2021-12-01 00:55:20 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://myanimelist.net/anime/38000/Kimetsu_no_Yaiba> (referer: https://www.google.com/search?q=kimetsu+no+yaiba+anime+myanimelist)
+2021-12-01 00:55:20 [scrapy.core.scraper] DEBUG: Scraped from <200 https://myanimelist.net/anime/38000/Kimetsu_no_Yaiba>
+{'jp_name': 'Kimetsu no Yaiba', 'en_name': 'Demon Slayer: Kimetsu no Yaiba', 'en_synopsis': "Ever since the death of his father, the burden of supporting the family has fallen upon Tanjirou Kamado's shoulders. Though living impoverished on a remote mountain, the Kamado family are able to enjoy a relatively peaceful and happy life. One day, Tanjirou decides to go down to the local village to make a little money selling charcoal. On his way back, night falls, forcing Tanjirou to take shelter in the house of a strange man, who warns him of the existence of flesh-eating demons that lurk in the woods at night.When he finally arrives back home the next day, he is met with a horrifying sight—his whole family has been slaughtered. Worse still, the sole survivor is his sister Nezuko, who has been turned into a bloodthirsty demon. Consumed by rage and hatred, Tanjirou swears to avenge his family and stay by his only remaining sibling. Alongside the mysterious group calling themselves the Demon Slayer Corps, Tanjirou will do whatever it takes to slay the demons and protect the remnants of his beloved sister's humanity.", 'url_image': 'https://cdn.myanimelist.net/images/anime/1286/99889.jpg', 'Type:': 'TV', 'Episodes:': '26', 'Status:': 'Finished Airing', 'Aired:': 'Apr 6, 2019 to Sep 28, 2019', 'Premiered:': 'Spring 2019', 'Producers:': ['Aniplex', 'Shueisha'], 'Licensors:': 'Aniplex of America', 'Studios:': 'ufotable', 'Source:': 'Manga', 'Genres:': ['Action', 'Supernatural'], 'Themes:': ['Demons', 'Historical'], 'Demographic:': 'Shounen', 'Duration:': '23 min. per ep.', 'Rating:': 'R - 17+ (violence & profanity)'}
+2021-12-01 00:55:20 [scrapy.core.engine] INFO: Closing spider (finished)
+2021-12-01 00:55:20 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 3628,
+ 'downloader/request_count': 9,
+ 'downloader/request_method_count/GET': 9,
+ 'downloader/response_bytes': 411725,
+ 'downloader/response_count': 9,
+ 'downloader/response_status_count/200': 6,
+ 'downloader/response_status_count/302': 3,
+ 'elapsed_time_seconds': 2.47643,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2021, 12, 1, 3, 55, 20, 452618),
+ 'httpcompression/response_bytes': 1030129,
+ 'httpcompression/response_count': 5,
+ 'item_scraped_count': 3,
+ 'log_count/DEBUG': 12,
+ 'log_count/INFO': 10,
+ 'request_depth_max': 1,
+ 'response_received_count': 6,
+ 'scheduler/dequeued': 9,
+ 'scheduler/dequeued/memory': 9,
+ 'scheduler/enqueued': 9,
+ 'scheduler/enqueued/memory': 9,
+ 'start_time': datetime.datetime(2021, 12, 1, 3, 55, 17, 976188)}
+2021-12-01 00:55:20 [scrapy.core.engine] INFO: Spider closed (finished)

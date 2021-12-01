@@ -1,0 +1,71 @@
+2021-12-01 00:11:29 [scrapy.utils.log] INFO: Scrapy 2.5.1 started (bot: scrapyCrawlers)
+2021-12-01 00:11:29 [scrapy.utils.log] INFO: Versions: lxml 4.6.4.0, libxml2 2.9.5, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 21.7.0, Python 3.9.9 (tags/v3.9.9:ccb0e6a, Nov 15 2021, 18:08:50) [MSC v.1929 64 bit (AMD64)], pyOpenSSL 21.0.0 (OpenSSL 1.1.1l  24 Aug 2021), cryptography 36.0.0, Platform Windows-10-10.0.19042-SP0
+2021-12-01 00:11:29 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2021-12-01 00:11:29 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'scrapyCrawlers',
+ 'LOG_FILE': 'logs\\scrapyCrawlers\\serie\\5deafb84525411ec9e017c8ae1da3f65.log',
+ 'NEWSPIDER_MODULE': 'scrapyCrawlers.spiders',
+ 'SPIDER_MODULES': ['scrapyCrawlers.spiders']}
+2021-12-01 00:11:29 [scrapy.extensions.telnet] INFO: Telnet Password: 1ca7547a088e5dc5
+2021-12-01 00:11:29 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2021-12-01 00:11:29 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2021-12-01 00:11:29 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2021-12-01 00:11:29 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2021-12-01 00:11:29 [scrapy.core.engine] INFO: Spider opened
+2021-12-01 00:11:29 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2021-12-01 00:11:29 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2021-12-01 00:11:30 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.google.com/search?q=chicago+fire+anime+justwatch> (referer: None)
+2021-12-01 00:11:30 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.google.com/search?q=chicago+fire+anime+justwatch%20%22us%22> (referer: None)
+2021-12-01 00:11:30 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.justwatch.com/br/serie/chicago-fire> from <GET https://www.google.com/url?q=https://www.justwatch.com/br/serie/chicago-fire&sa=U&ved=2ahUKEwiP1OW90MH0AhWfDrkGHZStBgkQFnoECAAQAg&usg=AOvVaw2AM0IoGVZ6z0H0RsQX-JFj>
+2021-12-01 00:11:30 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.justwatch.com/us/tv-show/without-a-trace> from <GET https://www.google.com/url?q=https://www.justwatch.com/us/tv-show/without-a-trace&sa=U&ved=2ahUKEwiOveW90MH0AhXXIbkGHS-xB-UQFnoECAAQAg&usg=AOvVaw1SVP2-1saELamMlS-yonX6>
+2021-12-01 00:11:31 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.justwatch.com/br/serie/chicago-fire> (referer: https://www.google.com/search?q=chicago+fire+anime+justwatch)
+2021-12-01 00:11:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.justwatch.com/br/serie/chicago-fire>
+{'stream': ['Globo Play', 'Amazon Prime Video']}
+2021-12-01 00:11:31 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.justwatch.com/us/tv-show/without-a-trace> (referer: https://www.google.com/search?q=chicago+fire+anime+justwatch%20%22us%22)
+2021-12-01 00:11:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.justwatch.com/us/tv-show/without-a-trace>
+{'en_name': ' Without a Trace ', 'desc': 'The series follows the ventures of a Missing Persons Unit of the FBI in New York City.', 'url_img': 'https://images.justwatch.com/poster/176338062/s592', 'genres': ['Action & Adventure ', 'Drama ', 'Crime ', 'Mystery & Thriller ']}
+2021-12-01 00:11:31 [scrapy.core.engine] INFO: Closing spider (finished)
+2021-12-01 00:11:31 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 2433,
+ 'downloader/request_count': 6,
+ 'downloader/request_method_count/GET': 6,
+ 'downloader/response_bytes': 239727,
+ 'downloader/response_count': 6,
+ 'downloader/response_status_count/200': 4,
+ 'downloader/response_status_count/302': 2,
+ 'elapsed_time_seconds': 2.245846,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2021, 12, 1, 3, 11, 31, 661386),
+ 'httpcompression/response_bytes': 1018578,
+ 'httpcompression/response_count': 4,
+ 'item_scraped_count': 2,
+ 'log_count/DEBUG': 8,
+ 'log_count/INFO': 10,
+ 'request_depth_max': 1,
+ 'response_received_count': 4,
+ 'scheduler/dequeued': 6,
+ 'scheduler/dequeued/memory': 6,
+ 'scheduler/enqueued': 6,
+ 'scheduler/enqueued/memory': 6,
+ 'start_time': datetime.datetime(2021, 12, 1, 3, 11, 29, 415540)}
+2021-12-01 00:11:31 [scrapy.core.engine] INFO: Spider closed (finished)

@@ -1,0 +1,71 @@
+2021-12-01 00:21:48 [scrapy.utils.log] INFO: Scrapy 2.5.1 started (bot: scrapyCrawlers)
+2021-12-01 00:21:48 [scrapy.utils.log] INFO: Versions: lxml 4.6.4.0, libxml2 2.9.5, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 21.7.0, Python 3.9.9 (tags/v3.9.9:ccb0e6a, Nov 15 2021, 18:08:50) [MSC v.1929 64 bit (AMD64)], pyOpenSSL 21.0.0 (OpenSSL 1.1.1l  24 Aug 2021), cryptography 36.0.0, Platform Windows-10-10.0.19042-SP0
+2021-12-01 00:21:48 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2021-12-01 00:21:48 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'scrapyCrawlers',
+ 'LOG_FILE': 'logs\\scrapyCrawlers\\serie\\ceeb73c6525511ecbe297c8ae1da3f65.log',
+ 'NEWSPIDER_MODULE': 'scrapyCrawlers.spiders',
+ 'SPIDER_MODULES': ['scrapyCrawlers.spiders']}
+2021-12-01 00:21:48 [scrapy.extensions.telnet] INFO: Telnet Password: 208fe7a0d307c2c2
+2021-12-01 00:21:48 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2021-12-01 00:21:48 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2021-12-01 00:21:48 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2021-12-01 00:21:48 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2021-12-01 00:21:48 [scrapy.core.engine] INFO: Spider opened
+2021-12-01 00:21:48 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2021-12-01 00:21:48 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2021-12-01 00:21:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.google.com/search?q=chicago+fire+justwatch> (referer: None)
+2021-12-01 00:21:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.google.com/search?q=chicago+fire+justwatch%20%22us%22> (referer: None)
+2021-12-01 00:21:49 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.justwatch.com/br/serie/chicago-fire> from <GET https://www.google.com/url?q=https://www.justwatch.com/br/serie/chicago-fire&sa=U&ved=2ahUKEwi_wfXk0sH0AhXNILkGHSgSB3QQFnoECAUQAg&usg=AOvVaw3pdhC0mBfoCyHtfjMXsGgi>
+2021-12-01 00:21:49 [scrapy.downloadermiddlewares.redirect] DEBUG: Redirecting (302) to <GET https://www.justwatch.com/us/tv-show/chicago-fire> from <GET https://www.google.com/url?q=https://www.justwatch.com/us/tv-show/chicago-fire&sa=U&ved=2ahUKEwioxvXk0sH0AhWVIbkGHfLiAyIQFnoECAUQAg&usg=AOvVaw3c769qODodKvx9ILiWXlXu>
+2021-12-01 00:21:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.justwatch.com/us/tv-show/chicago-fire> (referer: https://www.google.com/search?q=chicago+fire+justwatch%20%22us%22)
+2021-12-01 00:21:50 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.justwatch.com/us/tv-show/chicago-fire>
+{'en_name': ' Chicago Fire ', 'desc': "An edge-of-your-seat view into the lives of everyday heroes committed to one of America's noblest professions. For the firefighters, rescue squad and paramedics of Chicago Firehouse 51, no occupation is more stressful or dangerous, yet so rewarding and exhilarating. These courageous men and women are among the elite who forge headfirst into danger when everyone else is running the other way and whose actions make the difference between life and death.", 'url_img': 'https://images.justwatch.com/poster/84384660/s592', 'genres': ['Drama ', 'Action & Adventure ']}
+2021-12-01 00:21:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.justwatch.com/br/serie/chicago-fire> (referer: https://www.google.com/search?q=chicago+fire+justwatch)
+2021-12-01 00:21:50 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.justwatch.com/br/serie/chicago-fire>
+{'stream': ['Globo Play', 'Amazon Prime Video']}
+2021-12-01 00:21:50 [scrapy.core.engine] INFO: Closing spider (finished)
+2021-12-01 00:21:50 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 2391,
+ 'downloader/request_count': 6,
+ 'downloader/request_method_count/GET': 6,
+ 'downloader/response_bytes': 208071,
+ 'downloader/response_count': 6,
+ 'downloader/response_status_count/200': 4,
+ 'downloader/response_status_count/302': 2,
+ 'elapsed_time_seconds': 2.120615,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2021, 12, 1, 3, 21, 50, 446838),
+ 'httpcompression/response_bytes': 1027328,
+ 'httpcompression/response_count': 4,
+ 'item_scraped_count': 2,
+ 'log_count/DEBUG': 8,
+ 'log_count/INFO': 10,
+ 'request_depth_max': 1,
+ 'response_received_count': 4,
+ 'scheduler/dequeued': 6,
+ 'scheduler/dequeued/memory': 6,
+ 'scheduler/enqueued': 6,
+ 'scheduler/enqueued/memory': 6,
+ 'start_time': datetime.datetime(2021, 12, 1, 3, 21, 48, 326223)}
+2021-12-01 00:21:50 [scrapy.core.engine] INFO: Spider closed (finished)

@@ -1,5 +1,7 @@
 import scrapy
 from scrapy.linkextractors import LinkExtractor
+import requests
+from ..items import ScrapycrawlersItem
 
 
 # para rodar o crawler use o comando scrapy crawl
@@ -58,10 +60,13 @@ class AnimeSpider(scrapy.Spider):
         yield wikiList
     
     def parse_mal(self, response):
-
+        item =  ScrapycrawlersItem()
         jp_name = response.css('.h1_bold_none strong::text').get() #****extraindo nomes direto do site usando seletor CSS****
         en_name = response.css('.title-inherit::text').get()#****igual****
+        item['title'] = jp_name
+        item['en_title'] = en_name
         url_image = response.css('.borderClass div div .lazyload::attr(data-src)').get()
+        item['urlImg'] = url_image
         en_synopsis = ''#****criando var da sinopse****
         temp = response.css('.pb16~ p::text').extract()#****criando temp var para tratar sinopse****
         temp = temp[:-1]
@@ -69,6 +74,7 @@ class AnimeSpider(scrapy.Spider):
             for j in ['\n', '\r']:
                 temp[i] = temp[i].replace(j, '')
         en_synopsis = en_synopsis.join(temp)#****juntando sinopse tratada com string vazia****
+        item['desc'] = en_synopsis
         del temp#****deletando para economizar espaço****
         infoList = [i.strip() for i in response.css('#content > table .borderClass div').css('::text').extract()]
         infoList = [i for i in infoList if len(i)> 0]
@@ -104,8 +110,8 @@ class AnimeSpider(scrapy.Spider):
                     malDict[i] = malDict[i][0]
             except:
                 print(malDict[i])
-        
-        yield malDict
+
+        yield item
 
     def parse_streaming(self,response):
         stream = response.css('.price-comparison--block .price-comparison__grid__row__holder div div img::attr(alt)').getall()

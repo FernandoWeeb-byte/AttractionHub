@@ -55,7 +55,7 @@ class SerieSpider(scrapy.Spider):
         genres = list(dict.fromkeys(genres))
 
         justWatchDict = {'en_name': en_name,'desc': desc, 'url_img': url_img, 'genres': genres}
-        yield justWatchDict
+        return justWatchDict
         
     def parse_streaming(self,response):
         stream = response.css('.price-comparison--block .price-comparison__grid__row__holder div div img::attr(alt)').getall()

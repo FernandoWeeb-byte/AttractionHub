@@ -3,10 +3,12 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+import scrapy 
+from scrapy_djangoitem import DjangoItem
+from ...models import Attraction
 
 
-class ScrapycrawlersItem(scrapy.Item):
+class ScrapycrawlersItem(DjangoItem):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    django_model = Attraction

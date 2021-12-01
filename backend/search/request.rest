@@ -2,5 +2,12 @@ POST http://127.0.0.1:8000/search/crawler/
 content-type: application/json
 
 {
-    "anime" : "chihayafuru"
+    "anime" : "kimetsu no yaiba"
 }
+
+
+###
+
+GET http://127.0.0.1:8000/search/crawler/ 
+content-type: application/json
+
