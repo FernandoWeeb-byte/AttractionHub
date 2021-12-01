@@ -6,8 +6,10 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
+#from .spiders.anime import malDict
 
 
 class ScrapycrawlersPipeline:
     def process_item(self, item, spider):
+        print('veio aqui')
         return item

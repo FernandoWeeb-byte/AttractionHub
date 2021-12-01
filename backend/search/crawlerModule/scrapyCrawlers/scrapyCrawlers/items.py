@@ -8,5 +8,6 @@ import scrapy
 
 class ScrapycrawlersItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    en_name = scrapy.Field()
+    jp_name = scrapy.Field()
+    

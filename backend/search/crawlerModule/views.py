@@ -13,21 +13,26 @@ from twisted.internet import reactor
 import os
 import time
 import subprocess
+from crochet import setup
+setup()
 
 
+#process.start(stop_after_crawl=True)
 
 class CrawlerView(APIView):
     def post(self,request):
         animeName = request.data['anime']
         animeName += " anime"
         spider = AnimeSpider
-        process = CrawlerProcess(get_project_settings())
         
+        process = CrawlerRunner(get_project_settings())
         process.crawl(spider, an = animeName)
-        process.start() # the script will block here until the crawling is finished
 
-        # d = process.crawl(spider)
-        # d.addBoth(lambda _: reactor.stop())
+            
+         # the script will block here until the crawling is finished
+
+        # d = process.crawl(spider, an = animeName)
+        # #d.addBoth(lambda _: reactor.stop())
         # reactor.run()
         
 

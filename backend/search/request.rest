@@ -2,5 +2,5 @@ POST http://127.0.0.1:8000/search/crawler/
 content-type: application/json
 
 {
-    "anime" : "chihayafuru"
+    "anime" : "naruto shippuden"
 }

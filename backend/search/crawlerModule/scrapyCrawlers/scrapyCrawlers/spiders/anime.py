@@ -1,5 +1,6 @@
 import scrapy
 from scrapy.linkextractors import LinkExtractor
+import requests
 
 
 # para rodar o crawler use o comando scrapy crawl
@@ -104,7 +105,8 @@ class AnimeSpider(scrapy.Spider):
                     malDict[i] = malDict[i][0]
             except:
                 print(malDict[i])
-        
+        r = requests.get('http://127.0.0.1:8000/leste/man/',data=malDict)
+        print(r)
         yield malDict
 
     def parse_streaming(self,response):
