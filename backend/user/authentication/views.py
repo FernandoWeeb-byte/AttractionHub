@@ -1,10 +1,13 @@
+from typing import Generic
 from django.shortcuts import render
+from django.views import generic
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.serializers import Serializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer, ChangePasswordSerializer
+from rest_framework.permissions import IsAuthenticated
 
 import jwt, datetime
 # Create your views here.
@@ -73,3 +76,9 @@ class LogoutView(APIView):
         }
 
         return response
+
+class ChangePasswordView(generic.UpdateView):
+
+    queryset = User.objects.all()
+    permission_classes = (IsAuthenticated,)
+    serializer_class = ChangePasswordSerializer
