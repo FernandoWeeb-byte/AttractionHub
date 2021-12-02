@@ -1,8 +1,9 @@
 from django.urls import path
 
-from .views import ManagerView
+from .views import AnimeView, SerieView, SearchView
 
 urlpatterns = [
-    path('man/', ManagerView.as_view())
-   
+    path('anime/', AnimeView.as_view()),
+    path('serie/', SerieView.as_view()),
+    path('search/', SearchView.as_view()),
 ]

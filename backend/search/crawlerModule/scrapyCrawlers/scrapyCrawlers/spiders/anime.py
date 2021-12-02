@@ -105,8 +105,8 @@ class AnimeSpider(scrapy.Spider):
                     malDict[i] = malDict[i][0]
             except:
                 print(malDict[i])
-        r = requests.get('http://127.0.0.1:8000/leste/man/',data=malDict)
-        print(r)
+        requests.get('http://127.0.0.1:8000/list/anime/', data=malDict)
+        
         yield malDict
 
     def parse_streaming(self,response):

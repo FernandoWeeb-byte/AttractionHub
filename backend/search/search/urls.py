@@ -20,5 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('search/', include("crawlerModule.urls")),
-    path('leste/', include("listManager.urls"))
+    path('list/', include("listManager.urls"))
 ]

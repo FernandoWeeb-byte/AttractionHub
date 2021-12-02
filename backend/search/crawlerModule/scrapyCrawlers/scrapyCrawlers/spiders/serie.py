@@ -1,6 +1,6 @@
 import scrapy
 from scrapy.linkextractors import LinkExtractor
-
+import requests
 
 # para rodar o crawler use o comando scrapy crawl
 # os argumentos devem ser nome da spider e um -a an, que sera o nome do anime
@@ -9,10 +9,12 @@ from scrapy.linkextractors import LinkExtractor
 
 
 class SerieSpider(scrapy.Spider):
-    def __init__(self, at=None, md=1, *args, **kwargs):
+    def __init__(self, at=None,tp=None, md=1, *args, **kwargs):
         super(SerieSpider, self).__init__(*args, **kwargs)
         self.attractionName = at.split()
         self.maxDep = int(md)
+        self.type = tp
+
     name = 'serie'
 
     def start_requests(self):
@@ -50,14 +52,19 @@ class SerieSpider(scrapy.Spider):
         en_name = response.css('h1::text').get()
         url_img = response.css('.title-poster--no-radius-bottom  .lazyload::attr(data-src)').get()
         desc = response.css('.jw-info-box__container-content div div div p.text-wrap-pre-line span::text').get()
+        if desc == None:
+            desc = response.css('.jw-info-box__container-content div div div p.text-wrap-pre-line::text').get()
         genres = response.css('.title-info .detail-infos .detail-infos__value span::text').getall()
-        genres = list(filter(lambda x: (x != ", "),genres))
+        genres = list(filter(lambda x: (x != ", "), genres))
         genres = list(dict.fromkeys(genres))
+        rating = response.css('.detail-infos:nth-child(5) .detail-infos__value::text').get()
 
-        justWatchDict = {'en_name': en_name,'desc': desc, 'url_img': url_img, 'genres': genres}
+        justWatchDict = {'en_name': en_name,'desc': desc, 'url_img': url_img, 'genres': genres, 'rating': rating,'type': self.type} 
+        requests.get('http://127.0.0.1:8000/list/serie/', data=justWatchDict)
         yield justWatchDict
         
     def parse_streaming(self,response):
         stream = response.css('.price-comparison--block .price-comparison__grid__row__holder div div img::attr(alt)').getall()
         streamDict = {'stream':stream}
         yield streamDict
+    
