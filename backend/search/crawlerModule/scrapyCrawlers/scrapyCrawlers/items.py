@@ -8,6 +8,11 @@ import scrapy
 
 class ScrapycrawlersItem(scrapy.Item):
     # define the fields for your item here like:
-    en_name = scrapy.Field()
-    jp_name = scrapy.Field()
+    title = scrapy.Field()
+    desc = scrapy.Field()
+    urlImg =scrapy.Field()
+    attractionType = scrapy.Field()
+    rating = scrapy.Field()
+    genre = scrapy.Field()
+    stream = scrapy.Field()
     

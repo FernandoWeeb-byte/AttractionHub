@@ -26,23 +26,21 @@ class CrawlerView(APIView):
         name = request.data['title']
         attraction_type = request.data['type']
         process = CrawlerRunner(get_project_settings())
+        lista = []
         if attraction_type == "anime":
             name += " anime"
             spider = AnimeSpider
-            process.crawl(spider, an = name)
+            r = process.crawl(spider, an = name)
         elif attraction_type == "serie" or attraction_type == "movie":
             print("entrou pra fazer o request")
             spider = SerieSpider
-            process.crawl(spider, at = name, tp = attraction_type)
+            r = process.crawl(spider, at = name, tp = attraction_type)
 
             
-         # the script will block here until the crawling is finished
-
         # d = process.crawl(spider, an = animeName)
         # #d.addBoth(lambda _: reactor.stop())
         # reactor.run()
-        
-
+        print(r)
         return JsonResponse({'task_id': 1, 'status': 'started' })
 
 

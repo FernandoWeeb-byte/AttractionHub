@@ -94,10 +94,11 @@ class SearchView(APIView):
         print(len(lista.values()))
         if len(lista.values()) == 0:
             print('entrou no if')
-            requests.post('http://127.0.0.1:8000/search/crawler/', data={'title': title, 'type': tp} )
-            lista = Attraction.objects.filter(title__icontains=title)
+            r = requests.post('http://127.0.0.1:8000/search/crawler/', data={'title': title, 'type': tp} )
             
-        
-        resp = Response(status=200)
+        while len(lista.values()) == 0:
+            lista = Attraction.objects.filter(title__icontains=title)
+        print(lista.values_list())
+        resp = Response( lista.all().values(),status=200)
 
         return resp

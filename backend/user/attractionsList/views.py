@@ -32,5 +32,7 @@ class AttractionView(APIView):
         obj.delete()
 
         return Response(status=200)
+
+    
     
     
