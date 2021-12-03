@@ -1,7 +1,8 @@
 import scrapy
 from scrapy.linkextractors import LinkExtractor
 import requests
-
+from ..pipelines import ScrapycrawlersPipeline
+from ..items import ScrapycrawlersItem
 # para rodar o crawler use o comando scrapy crawl
 # os argumentos devem ser nome da spider e um -a an, que sera o nome do anime
 # exemplo para pegar Attack on titan:
@@ -9,12 +10,16 @@ import requests
 
 
 class SerieSpider(scrapy.Spider):
-    def __init__(self, at=None,tp=None, md=1, *args, **kwargs):
+    custom_settings = {
+       'ITEM_PIPELINES' :{ScrapycrawlersPipeline: 300,}
+    }
+    def __init__(self,at=None,tp=None, md=1, *args, **kwargs):
         super(SerieSpider, self).__init__(*args, **kwargs)
         self.attractionName = at.split()
         self.maxDep = int(md)
         self.type = tp
-
+        self.attraction = ScrapycrawlersItem()
+        
     name = 'serie'
 
     def start_requests(self):
@@ -60,6 +65,9 @@ class SerieSpider(scrapy.Spider):
         rating = response.css('.detail-infos:nth-child(5) .detail-infos__value::text').get()
 
         justWatchDict = {'en_name': en_name,'desc': desc, 'url_img': url_img, 'genres': genres, 'rating': rating,'type': self.type} 
+       
+        
+
         requests.get('http://127.0.0.1:8000/list/serie/', data=justWatchDict)
         yield justWatchDict
         

@@ -5,6 +5,8 @@ from django.db import models
 class Genre(models.Model):
     title = models.CharField(max_length=64, primary_key=True)
     
+class Stream(models.Model):
+    title = models.CharField(max_length=64, primary_key=True)
 
 class Attraction(models.Model):
     title = models.CharField(max_length=256, unique=True)
@@ -13,4 +15,5 @@ class Attraction(models.Model):
     attractionType = models.CharField(max_length=100)
     rating = models.CharField(max_length=100, null=True)
     genre = models.ManyToManyField(Genre)
+    stream = models.ManyToManyField(Stream)
     

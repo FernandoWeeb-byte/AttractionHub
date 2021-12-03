@@ -1,7 +1,8 @@
 import scrapy
 from scrapy.linkextractors import LinkExtractor
 import requests
-
+from ..items import ScrapycrawlersItem
+from ..pipelines import ScrapycrawlersPipeline
 
 # para rodar o crawler use o comando scrapy crawl
 # os argumentos devem ser nome da spider e um -a an, que sera o nome do anime
@@ -10,10 +11,14 @@ import requests
 
 
 class AnimeSpider(scrapy.Spider):
+    custom_settings = {
+       'ITEM_PIPELINES' :{ScrapycrawlersPipeline: 300,}
+    }
     def __init__(self, an=None, md=1, *args, **kwargs):
         super(AnimeSpider, self).__init__(*args, **kwargs)
         self.animeName = an.split()
         self.maxDep = int(md)
+        self.attractions = ScrapycrawlersItem()
     name = 'anime'
 
     def start_requests(self):
@@ -22,7 +27,7 @@ class AnimeSpider(scrapy.Spider):
         url1 = url+'wiki'
         url2 = url+'myanimelist'
         url3 = url+'justwatch'
-        yield scrapy.Request(url=url1, callback=self.getLink,meta={'domain':'wikipedia.org','name':'wikipedia'})
+        #yield scrapy.Request(url=url1, callback=self.getLink,meta={'domain':'wikipedia.org','name':'wikipedia'})
         yield scrapy.Request(url=url2, callback=self.getLink,meta={'domain':'myanimelist.net','name':'myanimelist'})
         yield scrapy.Request(url=url3, callback=self.getLink,meta={'domain':'justwatch.com','name':'justwatch'})
 
@@ -59,7 +64,7 @@ class AnimeSpider(scrapy.Spider):
         yield wikiList
     
     def parse_mal(self, response):
-
+        
         jp_name = response.css('.h1_bold_none strong::text').get() #****extraindo nomes direto do site usando seletor CSS****
         en_name = response.css('.title-inherit::text').get()#****igual****
         url_image = response.css('.borderClass div div .lazyload::attr(data-src)').get()
@@ -70,6 +75,7 @@ class AnimeSpider(scrapy.Spider):
             for j in ['\n', '\r']:
                 temp[i] = temp[i].replace(j, '')
         en_synopsis = en_synopsis.join(temp)#****juntando sinopse tratada com string vazia****
+        self.attractions['title'] = jp_name
         del temp#****deletando para economizar espaço****
         infoList = [i.strip() for i in response.css('#content > table .borderClass div').css('::text').extract()]
         infoList = [i for i in infoList if len(i)> 0]
@@ -88,7 +94,7 @@ class AnimeSpider(scrapy.Spider):
         except:
             pass
         indexers = [i for i in infoList if ':' in i]
-        malDict = {'jp_name':jp_name, 'en_name':en_name, 'en_synopsis':en_synopsis, 'url_image': url_image}
+        malDict = {'title':jp_name, 'en_name':en_name, 'desc':en_synopsis, 'urlImg': url_image}
         for i in indexers:
             malDict[i] = None
         for i in range(len(indexers)):
@@ -105,11 +111,21 @@ class AnimeSpider(scrapy.Spider):
                     malDict[i] = malDict[i][0]
             except:
                 print(malDict[i])
-        requests.get('http://127.0.0.1:8000/list/anime/', data=malDict)
         
-        yield malDict
+        listA = ['title','desc','urlImg']#'attractionType','rating','genre' ]
+        for i in listA:
+            self.attractions[i] = malDict[i]
+        self.attractions['rating'] = malDict['Rating:']
+        self.attractions['genre'] = malDict['Genres:']
+        self.attractions['attractionType'] = "anime"
+        
+        
+        # r = requests.get('http://127.0.0.1:8000/list/anime/', data=malDict)
+        # print(r)
+        yield self.attractions
 
     def parse_streaming(self,response):
         stream = response.css('.price-comparison--block .price-comparison__grid__row__holder div div img::attr(alt)').getall()
         streamDict = {'stream':stream}
-        yield streamDict
+        self.attractions['stream'] = stream
+        yield self.attractions

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets,views
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Attraction, Genre
+from .models import Attraction, Genre, Stream
 import requests
 # Create your views here.
 
@@ -10,7 +10,7 @@ class AnimeView(APIView):
     def get(self, request):
         print(request.data)
         
-        genres = request.data.getlist('Genres:')
+        genres = request.data.getlist('genre')
         print(genres)
         for g in genres:
             try:
@@ -20,20 +20,31 @@ class AnimeView(APIView):
                 genre = Genre.objects.create(title=g)
                 genre.save()
                 del genre
+        streams = request.data.getlist('stream')
+        print(streams)
+        for s in streams:
+            try:
+                var = Stream.objects.get(title=s)
+                del var
+            except Exception:
+                genre = Stream.objects.create(title=s)
+                genre.save()
+                del genre
            
         try:
             attraction = Attraction.objects.create(
-                title=request.data['jp_name'],
-                desc=request.data['en_synopsis'],
-                urlImg=request.data['url_image'],
+                title=request.data['title'],
+                desc=request.data['desc'],
+                urlImg=request.data['urlImg'],
                 attractionType="anime",
-                rating=request.data.getlist('Rating:')
+                rating=request.data.getlist('rating')
             )
 
             for g in genres:
                 g = g.strip()
                 attraction.genre.add(g)
-            
+            for s in streams:
+                attraction.stream.add(s)
             attraction.save()
             resp = Response(status=200)
            
@@ -89,16 +100,18 @@ class SearchView(APIView):
         title = request.data['title']
         tp = request.data['type']
         
+       
         lista = Attraction.objects.filter(title__icontains=title)
-        print(lista.values_list())
-        print(len(lista.values()))
+        #print(lista.values_list())
+        #print(len(lista.values()))
         if len(lista.values()) == 0:
             print('entrou no if')
             r = requests.post('http://127.0.0.1:8000/search/crawler/', data={'title': title, 'type': tp} )
-            
-        while len(lista.values()) == 0:
             lista = Attraction.objects.filter(title__icontains=title)
-        print(lista.values_list())
-        resp = Response( lista.all().values(),status=200)
+            print(lista.values_list())
+            resp = Response(lista.all().values(),status=200)
+            return resp
+            
+        resp = Response(lista.all().values(),status=200)
 
         return resp

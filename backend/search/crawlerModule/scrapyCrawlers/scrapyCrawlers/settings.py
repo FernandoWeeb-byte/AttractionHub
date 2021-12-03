@@ -9,8 +9,8 @@
 
 BOT_NAME = 'scrapyCrawlers'
 
-SPIDER_MODULES = ['scrapyCrawlers.spiders']
-NEWSPIDER_MODULE = 'scrapyCrawlers.spiders'
+SPIDER_MODULES = ['scrapyCrawlers.scrapyCrawlers.spiders']
+NEWSPIDER_MODULE = 'scrapyCrawlers.scrapyCrawlers.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -62,9 +62,9 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'scrapyCrawlers.pipelines.ScrapycrawlersPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'scrapyCrawlers.pipelines.ScrapycrawlersPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

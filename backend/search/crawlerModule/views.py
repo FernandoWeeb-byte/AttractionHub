@@ -7,15 +7,19 @@ from django.views.decorators.csrf import csrf_exempt
 import requests
 from rest_framework.views import APIView
 #from .models import ScrapyItem
-from scrapy.crawler import CrawlerProcess, CrawlerRunner
+
+from scrapy.crawler import CrawlerProcess, CrawlerRunner, Crawler
+from scrapy.settings import Settings
 from scrapy.utils.project import get_project_settings
 from crawlerModule.scrapyCrawlers.scrapyCrawlers.spiders.serie import SerieSpider
 from crawlerModule.scrapyCrawlers.scrapyCrawlers.spiders.anime import AnimeSpider
+from crawlerModule.scrapyCrawlers.scrapyCrawlers import settings
 from twisted.internet import reactor
 import os
 import time
-import subprocess
+import asyncio
 from crochet import setup
+
 setup()
 
 
@@ -35,14 +39,22 @@ class CrawlerView(APIView):
             print("entrou pra fazer o request")
             spider = SerieSpider
             r = process.crawl(spider, at = name, tp = attraction_type)
-
-            
-        # d = process.crawl(spider, an = animeName)
-        # #d.addBoth(lambda _: reactor.stop())
-        # reactor.run()
-        print(r)
-        return JsonResponse({'task_id': 1, 'status': 'started' })
-
+         
+        f = True
+        f = r.addCallback(lambda _:True)
+        od = time.time()
+        while True:
+            try:
+                print(f.result) 
+                if f.result:
+                    return JsonResponse({'task_id': 1, 'status': 'started' })
+            except Exception:
+                asyncio.sleep(5)
+                t = time.time()
+                if t - od >= 5.0:
+                    print("carregando...")
+                    od = t
+                    
 
 
 
