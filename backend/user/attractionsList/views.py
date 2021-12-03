@@ -23,15 +23,32 @@ class AttractionView(APIView):
     
     def put(self, request, pk):
         obj = Attraction.objects.filter(id=pk)
-        obj.update(score=request.data['score'], status=request.data['status'])
-        
-        return Response(status=200)
+
+        if len(obj) == 0:
+            return Response({"Error": "Not found!"}, status=404)
+        try:
+            obj.update(
+            score=request.data['score'], 
+            status=request.data['status'], 
+            like=request.data['like']
+            )
+        except Exception:
+            return Response({"Error": "Not updated!"}, status=404)
+
+        return Response({"Success": "Updated!"}, status=200)
 
     def delete(self, request, pk):
         obj = Attraction.objects.filter(id=pk)
-        obj.delete()
 
-        return Response(status=200)
+        if len(obj) == 0:
+            return Response({"Error": "Not found!"}, status=404)
+
+        try:
+            obj.delete()
+        except Exception:
+            return Response({"Error": "Not deleted!"}, status=404)
+
+        return Response({"Success": "Deleted!"}, status=200)
 
     
     
