@@ -63,6 +63,13 @@ class UserListGateway(Resource):
 
     #delete attraction from list
     def delete(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('token', required=True)
+        parser.add_argument('title')
+        args = parser.parse_args()
+        res = requests.delete(URL + 'list/attraction/', data=args)
+        resp = make_response(res.json(), 200)
+        return resp
         pass
 
 class UserAuthGateway(Resource):

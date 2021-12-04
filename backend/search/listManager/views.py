@@ -14,7 +14,6 @@ class AnimeView(APIView):
         print(request.data)
         
         genres = request.data.getlist('genre')
-        print(genres)
         for g in genres:
             try:
                 var = Genre.objects.get(title=g)
@@ -23,8 +22,8 @@ class AnimeView(APIView):
                 genre = Genre.objects.create(title=g)
                 genre.save()
                 del genre
+                
         streams = request.data.getlist('stream')
-        print(streams)
         for s in streams:
             try:
                 var = Stream.objects.get(title=s)
@@ -59,7 +58,6 @@ class AnimeView(APIView):
 
 class SerieView(APIView):
     def get(self, request):
-        print("entrou serieView")
         print(request.data)
 
         genres = request.data.getlist('genre')
@@ -99,7 +97,6 @@ class SerieView(APIView):
 class SearchView(APIView):
     def get(self, request):
 
-       
         title = request.data['title']
         tp = request.data['type']
         
@@ -110,18 +107,18 @@ class SearchView(APIView):
             lista = Attraction.objects.filter(title__icontains=title)
             resp = Response(lista.all().values(), status=200)
             return resp
-        
-        ret = {'stream': [], 'genre': []}
-        print(len(lista.all().values()))
-        for x in lista.all().values():
-            for i in x:
-                ret[i] = x[i]
-        print(ret)
-        
-        [[ret['stream'].append(s['title']) for s in x.stream.all().values()] for x in lista.all()]
-        
-        [[ret['genre'].append(s['title']) for s in x.genre.all().values()] for x in lista.all()]
-  
-        resp = JsonResponse({'data': ret, 'status':200})
 
-        return resp
+        lista_final = []
+        
+        for x in lista.all().values():
+            x['stream'] = []
+            x['genre'] = []
+            lista_final.append(x)
+
+        for ind, obj in enumerate(lista.all()):
+            for s in obj.stream.all().values():
+                lista_final[ind]['stream'].append(s['title'])
+            for s in obj.genre.all().values():
+                lista_final[ind]['genre'].append(s['title'])
+
+        return JsonResponse({'data': lista_final, 'status':200})
