@@ -1,4 +1,5 @@
 from typing import Generic
+from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.views import generic
 from rest_framework.exceptions import AuthenticationFailed
@@ -27,10 +28,11 @@ def permission(token):
 
 class RegisterView(APIView):
     def post(self, request):
+        print(request.data)
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)
+        return JsonResponse({"data": serializer.data, 'status': 200})
 
 class LoginView(APIView):
     def post(self, request):

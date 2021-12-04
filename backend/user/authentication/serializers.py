@@ -1,4 +1,6 @@
 from rest_framework import serializers
+
+import attractionsList.models as am
 from .models import User
 from django.contrib.auth.password_validation import validate_password
 
@@ -13,6 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)
+        attractions = []
         instance = self.Meta.model(**validated_data)
         if password is not None:
             instance.set_password(password)
