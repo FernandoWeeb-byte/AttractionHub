@@ -74,31 +74,32 @@ class AttractionView(APIView):
     def put(self, request):
         token = request.data['token']
         user = permission(token)
-        
         obj = user.attractions.filter(title=request.data['title']).values()
-        print(obj)
-        #obj = Attraction.objects.filter(id=pk)
 
         if len(obj) == 0:
-            return  JsonResponse({"msg": "Not found!",'status':404})
-        try:
-            obj.update(score=request.data['score'])
-        except Exception:
-            return JsonResponse({"msg": "not updated!",'status':404})
+            return  JsonResponse({"msg": "Not found!",'status': 404})
         
+        for i in request.data:
+            if i == 'score':
+                obj.update(score=request.data['score'])
+            elif i == 'status':
+                obj.update(status=request.data['status'])
+            elif i == 'like':
+                obj.update(like=request.data['like'])
 
-        return  JsonResponse({"msg": "updated!",'status':200})
+        return  JsonResponse({"msg": "updated!",'status': 200})
 
-    def delete(self, request, pk):
-        obj = Attraction.objects.filter(id=pk)
-
+    def delete(self, request):
+        token = request.data['token']
+        user = permission(token)
+        obj = user.attractions.filter(title=request.data['title'])
         if len(obj) == 0:
-            return Response({"Error": "Not found!"}, status=404)
+            return  JsonResponse({"msg": "not found",'status': 404})
 
         try:
             obj.delete()
         except Exception:
-            return Response({"Error": "Not deleted!"}, status=404)
+            return  JsonResponse({"msg": "not deleted",'status': 200})
 
-        return Response({"Success": "Deleted!"}, status=200)
+        return  JsonResponse({"msg": "deleted!",'status': 200})
     

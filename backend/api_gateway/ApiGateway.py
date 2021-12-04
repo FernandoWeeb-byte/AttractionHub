@@ -63,17 +63,47 @@ class UserListGateway(Resource):
 
     #delete attraction from list
     def delete(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('token', required=True)
+        parser.add_argument('title')
+        args = parser.parse_args()
+        res = requests.delete(URL + 'list/attraction/', data=args)
+        resp = make_response(res.json(), 200)
+        return resp
         pass
 
-class UserAuthGateway(Resource):
+class RegisterGateway(Resource):
     def get(self):
-        pass
+        parser = reqparse.RequestParser()
+        parser.add_argument('token', required=True)
+        args = parser.parse_args()
+        res = requests.get(URL + 'auth/user/', data=args)
+        resp = make_response(res.json(), 200)
+        return resp
 
     def post(self):
-        pass
+        parser = reqparse.RequestParser()
+        parser.add_argument('name', required=True)
+        parser.add_argument('username',required=True)
+        parser.add_argument('email',required=True)
+        parser.add_argument('password',required=True)
+        parser.add_argument('attractions')
+        args = parser.parse_args()
+        res = requests.post(URL + 'auth/register/', data=args)
+        resp = make_response(res.json(), 200)
+        return resp
 
     def put(self):
         pass
 
     def delete(self):
         pass
+
+class LoginGateway(Resource):
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('username',required=True)
+        parser.add_argument('password',required=True)
+        args = parser.parse_args()
+        res = requests.post(URL + 'auth/login/', data=args)
+        return res
