@@ -1,0 +1,58 @@
+Post http://127.0.0.1:5000/register/
+content-type: application/json
+
+{
+    "name": "fernando barbosa",
+    "email": "fefe@gmail.com",
+    "username": "myers",
+    "password": "12345abc"
+}
+
+###
+
+Post http://127.0.0.1:5000/login/
+content-type: application/json
+
+{
+    "username": "myers",
+    "password": "12345abc"
+}
+
+
+###
+
+
+Post http://127.0.0.1:8000/auth/login/
+content-type: application/json
+{
+    "username": "tyes",
+    "password": "12345abc"
+}
+
+###
+
+
+Post http://127.0.0.1:5000/manager/
+content-type: application/json
+
+{
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OCwiZXhwIjoxNjM4NjI1NDAzLCJpYXQiOjE2Mzg2MjE4MDN9.fh17FJySXwtn50Wod4hvE8gsLdnMKN3sgfo1QMZi910",
+    "title": "the witcher",
+    "desc": "bruxão",
+    "urlImg": "https://myanimelist.net/anime/1735/Naruto__Shippuuden/pics",
+    "rating": "13",
+    "genre": ["Comedy", "Action"],
+    "stream": ["Netflix", "Amazon"],
+    "attractionType": "serie"
+}
+
+
+###
+
+Get http://127.0.0.1:5000/manager/
+content-type: application/json
+
+{
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OCwiZXhwIjoxNjM4NjI1NDAzLCJpYXQiOjE2Mzg2MjE4MDN9.fh17FJySXwtn50Wod4hvE8gsLdnMKN3sgfo1QMZi910",
+    "type": "all"
+}

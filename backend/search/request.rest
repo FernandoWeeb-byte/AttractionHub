@@ -1,0 +1,17 @@
+POST http://127.0.0.1:8000/search/crawler/ 
+content-type: application/json
+
+{
+    "anime" : "naruto shippuden"
+}
+
+
+###
+
+GET http://127.0.0.1:8000/list/search
+content-type: application/json
+
+{
+    "title": "naruto",
+    "type": "anime"
+}
