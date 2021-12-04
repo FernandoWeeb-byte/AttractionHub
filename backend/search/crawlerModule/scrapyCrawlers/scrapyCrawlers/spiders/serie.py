@@ -1,7 +1,7 @@
 import scrapy
 from scrapy.linkextractors import LinkExtractor
 import requests
-from ..pipelines import ScrapycrawlersPipeline
+from ..pipelines import SeriePipeline
 from ..items import ScrapycrawlersItem
 # para rodar o crawler use o comando scrapy crawl
 # os argumentos devem ser nome da spider e um -a an, que sera o nome do anime
@@ -11,7 +11,7 @@ from ..items import ScrapycrawlersItem
 
 class SerieSpider(scrapy.Spider):
     custom_settings = {
-       'ITEM_PIPELINES' :{ScrapycrawlersPipeline: 300,}
+       'ITEM_PIPELINES' :{SeriePipeline: 300,}
     }
     def __init__(self,at=None,tp=None, md=1, *args, **kwargs):
         super(SerieSpider, self).__init__(*args, **kwargs)
@@ -64,15 +64,18 @@ class SerieSpider(scrapy.Spider):
         genres = list(dict.fromkeys(genres))
         rating = response.css('.detail-infos:nth-child(5) .detail-infos__value::text').get()
 
-        justWatchDict = {'en_name': en_name,'desc': desc, 'url_img': url_img, 'genres': genres, 'rating': rating,'type': self.type} 
+        justWatchDict = {'title': en_name,'desc': desc, 'urlImg': url_img, 'genre': genres, 'rating': rating,'attractionType': self.type} 
        
-        
+        listA = ['title','desc','urlImg', 'genre','rating','attractionType']#'attractionType','rating','genre' ]
+        for i in listA:
+            self.attraction[i] = justWatchDict[i]
 
         requests.get('http://127.0.0.1:8000/list/serie/', data=justWatchDict)
-        yield justWatchDict
+        yield self.attraction
         
     def parse_streaming(self,response):
         stream = response.css('.price-comparison--block .price-comparison__grid__row__holder div div img::attr(alt)').getall()
         streamDict = {'stream':stream}
-        yield streamDict
+        self.attraction['stream'] = stream
+        yield self.attraction
     

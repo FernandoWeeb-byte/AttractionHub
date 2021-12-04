@@ -1,23 +1,79 @@
 from flask.app import Flask
 import flask_restful as fr
 from flask_restful import reqparse, Resource
-from flask import request, Response, jsonify
+from flask import request, Response, jsonify, make_response
 import requests
 import json
 
 URL = 'http://127.0.0.1:8000/'
 
-class ApiGateway(Resource):
+class SearchGateway(Resource):
+    #search for attraction
     def get(self):
-        res = requests.get(URL + 'user/users').json()
-        return res, 200
+        parser = reqparse.RequestParser()
+        parser.add_argument('title', help='Rate cannot be converted')
+        parser.add_argument('type')
+        args = parser.parse_args()
+        res = requests.get(URL + 'list/search/', data=args)
+        resp = make_response(res.json(), 200)
+        return resp
 
+
+class UserListGateway(Resource):
+    #add attraction to list
     def post(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('name', required=True)
+        parser.add_argument('token')
+        parser.add_argument('title')
+        parser.add_argument('desc')
+        parser.add_argument('urlImg')
+        parser.add_argument('rating')
+        parser.add_argument('genre')
+        parser.add_argument('stream')
+        parser.add_argument('attractionType')
+       
         args = parser.parse_args()
-        return args, 200
+        print(args)
+        res = requests.post(URL + 'list/attraction/', data=args)
+        resp = make_response(res.json(), 200)
+        return resp
+        
+    #get attraction list of user
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('token', required=True)
+        parser.add_argument('type')
+        args = parser.parse_args()
+        res = requests.get(URL + 'list/attraction/', data=args)
+        resp = make_response(res.json(), 200)
+        return resp
+        
+    #update score, like and status os attraction
+    def put(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('token', required=True)
+        parser.add_argument('title')
+        parser.add_argument('score')
+        parser.add_argument('like')
+        parser.add_argument('status')
+        args = parser.parse_args()
+        res = requests.put(URL + 'list/attraction/', data=args)
+        resp = make_response(res.json(), 200)
+        return resp
+
+    #delete attraction from list
+    def delete(self):
+        pass
+
+class UserAuthGateway(Resource):
+    def get(self):
+        pass
+
+    def post(self):
+        pass
+
     def put(self):
         pass
+
     def delete(self):
         pass

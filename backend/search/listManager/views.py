@@ -1,9 +1,12 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render
+from flask.json import jsonify
 from rest_framework import viewsets,views
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Attraction, Genre, Stream
 import requests
+from django.http import JsonResponse
 # Create your views here.
 
 class AnimeView(APIView):
@@ -59,7 +62,7 @@ class SerieView(APIView):
         print("entrou serieView")
         print(request.data)
 
-        genres = request.data.getlist('genres')
+        genres = request.data.getlist('genre')
 
         for g in genres:
             g = g.strip()
@@ -73,9 +76,9 @@ class SerieView(APIView):
 
         try:
             attraction = Attraction.objects.create(
-                title=request.data['en_name'],
+                title=request.data['title'],
                 desc=request.data['desc'],
-                urlImg=request.data['url_img'],
+                urlImg=request.data['urlImg'],
                 attractionType="serie",
                 rating=request.data['rating']
             )
@@ -96,22 +99,29 @@ class SerieView(APIView):
 class SearchView(APIView):
     def get(self, request):
 
-        print(request.data)
+       
         title = request.data['title']
         tp = request.data['type']
         
-       
         lista = Attraction.objects.filter(title__icontains=title)
-        #print(lista.values_list())
-        #print(len(lista.values()))
+  
         if len(lista.values()) == 0:
-            print('entrou no if')
             r = requests.post('http://127.0.0.1:8000/search/crawler/', data={'title': title, 'type': tp} )
             lista = Attraction.objects.filter(title__icontains=title)
-            print(lista.values_list())
-            resp = Response(lista.all().values(),status=200)
+            resp = Response(lista.all().values(), status=200)
             return resp
-            
-        resp = Response(lista.all().values(),status=200)
+        
+        ret = {'stream': [], 'genre': []}
+        print(len(lista.all().values()))
+        for x in lista.all().values():
+            for i in x:
+                ret[i] = x[i]
+        print(ret)
+        
+        [[ret['stream'].append(s['title']) for s in x.stream.all().values()] for x in lista.all()]
+        
+        [[ret['genre'].append(s['title']) for s in x.genre.all().values()] for x in lista.all()]
+  
+        resp = JsonResponse({'data': ret, 'status':200})
 
         return resp
