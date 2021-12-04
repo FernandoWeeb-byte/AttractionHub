@@ -63,7 +63,7 @@ class LoginView(APIView):
             'token': token
         }
         
-        return response
+        return JsonResponse({'data': str(token), 'status': 200})
 
 
 class UserView(APIView):

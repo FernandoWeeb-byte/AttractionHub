@@ -106,4 +106,5 @@ class LoginGateway(Resource):
         parser.add_argument('password',required=True)
         args = parser.parse_args()
         res = requests.post(URL + 'auth/login/', data=args)
-        return res
+        resp = make_response(res.json(), 200)
+        return resp
