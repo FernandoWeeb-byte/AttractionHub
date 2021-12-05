@@ -53,6 +53,16 @@ Get http://127.0.0.1:5000/manager/
 content-type: application/json
 
 {
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OCwiZXhwIjoxNjM4NjI1NDAzLCJpYXQiOjE2Mzg2MjE4MDN9.fh17FJySXwtn50Wod4hvE8gsLdnMKN3sgfo1QMZi910",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OCwiZXhwIjoxNjM4NjM5NTE0LCJpYXQiOjE2Mzg2MzU5MTR9.CgnZ2XEVVBtMvcqrZ_EFIbqF09RPSJfQqR1jjm2_Da4",
+    "type": "all"
+}
+
+###
+
+Get http://127.0.0.1:5000/register/
+content-type: application/json
+
+{
+    "token": "",
     "type": "all"
 }

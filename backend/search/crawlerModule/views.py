@@ -30,8 +30,9 @@ class CrawlerView(APIView):
         name = request.data['title']
         attraction_type = request.data['type']
         process = CrawlerRunner(get_project_settings())
-        lista = []
+        print(request.data)
         if attraction_type == "anime":
+            print("aquiCrawler")
             name += " anime"
             spider = AnimeSpider
             r = process.crawl(spider, an = name)

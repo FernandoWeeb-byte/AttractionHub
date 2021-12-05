@@ -19,7 +19,7 @@ class ScrapycrawlersPipeline:
 
     def close_spider(self,spider):
         print(self.i)
-        r = requests.get('http://127.0.0.1:8000/list/anime/', data=self.i)
+        r = requests.get('http://127.0.0.1:6000/list/anime/', data=self.i)
         print(r)
 
 class SeriePipeline:
@@ -30,5 +30,5 @@ class SeriePipeline:
 
     def close_spider(self,spider):
         print(self.i)
-        r = requests.get('http://127.0.0.1:8000/list/serie/', data=self.i)
+        r = requests.get('http://127.0.0.1:6000/list/serie/', data=self.i)
         print(r)

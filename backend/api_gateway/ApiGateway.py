@@ -6,15 +6,25 @@ import requests
 import json
 
 URL = 'http://127.0.0.1:8000/'
+URLS = 'http://127.0.0.1:6000/'
 
 class SearchGateway(Resource):
     #search for attraction
     def get(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('title', help='Rate cannot be converted')
-        parser.add_argument('type')
+        parser.add_argument('title',location="headers", help='Rate cannot be converted')
+        parser.add_argument('type',location="headers")
         args = parser.parse_args()
-        res = requests.get(URL + 'list/search/', data=args)
+        res = requests.get(URLS + 'list/search/', data=args)
+        resp = make_response(res.json(), 200)
+        return resp
+
+class SearchDatabase(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('id',location="headers")
+        args = parser.parse_args()
+        res = requests.get(URLS + 'list/attraction/',data=args)
         resp = make_response(res.json(), 200)
         return resp
 
@@ -41,8 +51,8 @@ class UserListGateway(Resource):
     #get attraction list of user
     def get(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('token', required=True)
-        parser.add_argument('type')
+        parser.add_argument('token', required=True, location='headers')
+        parser.add_argument('type', location="headers")
         args = parser.parse_args()
         res = requests.get(URL + 'list/attraction/', data=args)
         resp = make_response(res.json(), 200)
@@ -75,7 +85,7 @@ class UserListGateway(Resource):
 class RegisterGateway(Resource):
     def get(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('token', required=True)
+        parser.add_argument('token', location='headers')
         args = parser.parse_args()
         res = requests.get(URL + 'auth/user/', data=args)
         resp = make_response(res.json(), 200)

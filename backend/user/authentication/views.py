@@ -1,3 +1,4 @@
+import json
 from typing import Generic
 from django.http.response import JsonResponse
 from django.shortcuts import render
@@ -63,7 +64,9 @@ class LoginView(APIView):
             'token': token
         }
         
-        return JsonResponse({'data': str(token), 'status': 200})
+        t = token.decode('utf8').replace("'",'"')
+        
+        return JsonResponse({'data': t, 'status': 200})
 
 
 class UserView(APIView):
