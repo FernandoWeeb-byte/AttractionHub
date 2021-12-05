@@ -1,0 +1,17 @@
+GET http://127.0.0.1:6000/list/attraction/ 
+content-type: application/json
+
+{
+    "id" : 4
+}
+
+
+###
+
+GET http://127.0.0.1:8000/list/search
+content-type: application/json
+
+{
+    "title": "naruto",
+    "type": "anime"
+}

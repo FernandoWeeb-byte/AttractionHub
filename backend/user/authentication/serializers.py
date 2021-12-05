@@ -1,4 +1,6 @@
 from rest_framework import serializers
+
+import attractionsList.models as am
 from .models import User
 from django.contrib.auth.password_validation import validate_password
 
@@ -6,13 +8,15 @@ from django.contrib.auth.password_validation import validate_password
 class UserSerializer(serializers.ModelSerializer):
     class Meta: 
         model = User
-        fields = ['id', 'name', 'username', 'email', 'password']
+        fields = ['id', 'name', 'username', 'email', 'attractions', 'password']
         extra_kwargs = {
-            'password': {'write_only': True}
+            'password': {'write_only': True},
+            'attractions':{'read_only': True, 'many':True}
         }
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)
+        attractions = []
         instance = self.Meta.model(**validated_data)
         if password is not None:
             instance.set_password(password)

@@ -1,4 +1,6 @@
+import json
 from typing import Generic
+from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.views import generic
 from rest_framework.exceptions import AuthenticationFailed
@@ -8,16 +10,30 @@ from rest_framework.response import Response
 from .models import User
 from .serializers import UserSerializer, ChangePasswordSerializer
 from rest_framework.permissions import IsAuthenticated
-
 import jwt, datetime
+
 # Create your views here.
+
+def permission(token):
+    if not token:
+        raise AuthenticationFailed('Unauthenticated!')
+
+    try:
+        payload = jwt.decode(token, 'secret', algorithms=['HS256'])
+    except jwt.ExpiredSignatureError:
+        raise AuthenticationFailed('Unauthenticated!')
+    
+    user = User.objects.filter(id=payload['id']).first()
+
+    return user
 
 class RegisterView(APIView):
     def post(self, request):
+        print(request.data)
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)
+        return JsonResponse({"data": serializer.data, 'status': 200})
 
 class LoginView(APIView):
     def post(self, request):
@@ -48,22 +64,15 @@ class LoginView(APIView):
             'token': token
         }
         
-        return response
+        t = token.decode('utf8').replace("'",'"')
+        
+        return JsonResponse({'data': t, 'status': 200})
 
 
 class UserView(APIView):
     def get(self, request):
-        token = request.COOKIES.get('token')
-        if not token:
-            raise AuthenticationFailed('Unauthenticated!')
-
-        try:
-            payload = jwt.decode(token, 'secret', algorithms=['HS256'])
-        except jwt.ExpiredSignatureError:
-             raise AuthenticationFailed('Unauthenticated!')
-        
-        user = User.objects.filter(id=payload['id']).first()
-
+        token = request.data['token']
+        user = permission(token)
         serializer = UserSerializer(user)
         return Response(serializer.data)
 

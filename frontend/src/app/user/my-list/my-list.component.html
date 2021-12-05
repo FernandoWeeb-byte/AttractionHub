@@ -1,0 +1,19 @@
+<app-header-logged [user]= "user"></app-header-logged>
+<div class="container">
+    <div class="titleContainer">
+        <h1 style="color: white;">MY lISTS</h1>
+    </div>
+    <mat-button-toggle-group name="favoriteColor" aria-label="Favorite Color">
+        <mat-button-toggle (click)="onClick('movie')"  value="movie">MOVIES</mat-button-toggle>
+        <mat-button-toggle (click)="onClick('serie')" value="serie">SERIES</mat-button-toggle>
+        <mat-button-toggle (click)="onClick('anime')" value="anime">ANIME</mat-button-toggle>
+        <mat-button-toggle (click)="onClick('all')">ALL</mat-button-toggle>
+    </mat-button-toggle-group>
+    <div class="attractionContainer">
+        <div class="itemContainer" *ngFor="let item of list;">
+            <app-attraction-item [status]="item.status" [score]="item.score" [urlImg]="item.urlImg" [title]="item.title" ></app-attraction-item>
+        </div>
+        
+    </div>
+   
+</div>

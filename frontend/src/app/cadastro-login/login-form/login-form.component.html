@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="formContainer" [formGroup] = "user" (ngSubmit)= "onSubmit()">
+        <img class="logo" src="../../../assets/logoattractionhubBlue.png"/>
+        <form class="form">
+            <div class="inputContainer">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <input matInput placeholder="Username" formControlName="username">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <input matInput type="password" placeholder="Password" formControlName="password">
+                </mat-form-field>
+            </div>
+            <div class="button-container">
+                <a style="font-family: Roboto;">Forgot your password?</a>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!user.valid">SIGN IN</button>
+            </div>
+        </form>
+
+        
+    </div>
+</div>
