@@ -80,7 +80,7 @@ class UserListGateway(Resource):
         res = requests.delete(URL + 'list/attraction/', data=args)
         resp = make_response(res.json(), 200)
         return resp
-        pass
+        
 
 class RegisterGateway(Resource):
     def get(self):
