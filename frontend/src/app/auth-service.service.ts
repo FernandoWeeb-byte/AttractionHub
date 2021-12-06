@@ -97,4 +97,52 @@ export class AuthServiceService {
     }).toPromise()
     return result
   }
+
+  async deleteFromList(title:any, token:any){
+    const result = await this.http.delete<any>(this.API + '/manager/',{
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        token: token,
+        title: title
+      })
+    }).toPromise()
+    return result
+  }
+
+  async searchListId(token:any,id:any){
+    const result =  await this.http.get<any>(this.API + '/attraction/',{
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        token: token,
+        id: id
+      })
+    }).toPromise()
+    return result
+  }
+
+  async updateList(token:any, title:any, score:any,status:any, like:any){
+    const result =  await this.http.put<any>(this.API + '/manager/',{
+      token: token,
+      title: title,
+      score: score,
+      like: like,
+      status: status
+    } ).toPromise()
+    return result
+  }
+
+  async mlPost(token:any){
+    const result =  await this.http.post<any>(this.API + '/ml/', {token:token}).toPromise()
+    return result
+  }
+
+  async mlGet(title:any){
+    const result = await this.http.get<any>(this.API + '/ml/',{
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        title: title
+      })
+    }).toPromise()
+    return result
+  }
 }

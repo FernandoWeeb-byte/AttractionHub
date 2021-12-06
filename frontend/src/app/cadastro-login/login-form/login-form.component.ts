@@ -24,6 +24,9 @@ export class LoginFormComponent implements OnInit {
     try{
       const result = await this.service.login(this.user);
       console.log(result);
+      const token = window.localStorage.getItem('token')
+      //const ml = await this.service.mlPost(token)
+      //console.log(ml)
       this.router.navigate([''])
     }catch(error){
       console.log(error)

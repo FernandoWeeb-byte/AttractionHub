@@ -2,14 +2,13 @@
     <div class="searchContainer">
         <div class="logoContainer">
             <img class="logo" src="../../../assets/logoattractionhub-removebg-preview.png"/>
-            <p style="color: white;">search for movies,series,animes,docs...</p>
+            <p style="color: white; font-size: 16px;">Search for movies, series, animes, docs...</p>
         </div>
         <div class="hubContainer">
             <mat-button-toggle-group  aria-label="Favorite Color">
-                <mat-button-toggle (click)="changeType('movie')"  >MOVIE</mat-button-toggle>
-                <mat-button-toggle (click)="changeType('serie')"  >SERIES</mat-button-toggle>
-                <mat-button-toggle (click)="changeType('anime')"  >ANIME</mat-button-toggle>
-                <mat-button-toggle   >DOCS</mat-button-toggle>
+                <mat-button-toggle (click)="changeType('movie')"  checked="true">MOVIES</mat-button-toggle>
+                <mat-button-toggle (click)="changeType('serie')" >SERIES </mat-button-toggle>
+                <mat-button-toggle (click)="changeType('anime')" >ANIMES</mat-button-toggle>
             </mat-button-toggle-group>
             <form class="form" [formGroup] = "att" (ngSubmit) = "onSubmit()">
                 <input class="input" placeholder="Search" formControlName="attraction"/>
@@ -17,12 +16,13 @@
            
             <div class="attractionContainer" *ngIf="!search">
                 <div *ngFor="let item of res">
-                    <img class="image" src="item.urlImg" (click)="onClick(item.id)"/>
+                    <img class="image" [src]="item.urlImg" (click)="onClick(item.title,item.id)"/>
                 </div>
-                <img class="image" src="https://cdn.myanimelist.net/images/anime/9/84460.jpg">
             </div>
             <div class="attractionContainer" *ngIf="search">
-                <app-attraction ></app-attraction>
+                <app-attraction >
+                    <span style="color: green;">{{gosta | number:'1.0-2'}}% FOR YOU</span>
+                </app-attraction>
             </div>
     
         </div>

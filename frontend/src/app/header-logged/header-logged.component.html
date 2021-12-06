@@ -3,7 +3,7 @@
     <div class="button-container">
         <button routerLink="/list" style="color: white;" mat-button>MY LIST</button>
         <mat-divider style="background-color: white;" [vertical]="true"></mat-divider>
-        <button routerLink="/login" style="color: white;" mat-button>{{user.username}}</button>
-        
+        <button style="color: white;" mat-button>{{user.username}}</button>
+        <fa-icon (click) = "logOut()" style="color: red; font-size: 20px; cursor: pointer; margin: 20px;" [icon]="faPowerOff"></fa-icon>
     </div>
 </div>

@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'authentication',
-    'attractionsList'
+    'attractionsList',
+    'machineLearning'
 ]
 
 MIDDLEWARE = [

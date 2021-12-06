@@ -24,6 +24,7 @@ content-type: application/json
 
 Post http://127.0.0.1:8000/auth/login/
 content-type: application/json
+
 {
     "username": "tyes",
     "password": "12345abc"
@@ -49,20 +50,38 @@ content-type: application/json
 
 ###
 
-Get http://127.0.0.1:5000/manager/
+PUT http://127.0.0.1:5000/manager/
 content-type: application/json
 
 {
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OCwiZXhwIjoxNjM4NjM5NTE0LCJpYXQiOjE2Mzg2MzU5MTR9.CgnZ2XEVVBtMvcqrZ_EFIbqF09RPSJfQqR1jjm2_Da4",
-    "type": "all"
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjM4NzMwNTc2LCJpYXQiOjE2Mzg3MjY5NzZ9.lPyPnuwgYmijk_bOiM7wK8Q1gdQ2rfyBSQZlZo_8S1E",
+    "title": "fufuf",
+    "score": 4,
+    "like": false,
+    "status": "watched"
 }
 
 ###
 
-Get http://127.0.0.1:5000/register/
+Get http://127.0.0.1:5000/manager/
+content-type: application/json
+token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjM4NzMwNTc2LCJpYXQiOjE2Mzg3MjY5NzZ9.lPyPnuwgYmijk_bOiM7wK8Q1gdQ2rfyBSQZlZo_8S1E
+type: all
+
+###
+
+POST http://127.0.0.1:8000/ml/test/
 content-type: application/json
 
 {
-    "token": "",
-    "type": "all"
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjM4NzQwOTMzLCJpYXQiOjE2Mzg3MzczMzN9.1TubeeY7RifL6NGrL_c0lJL3QmIF6wohMYaC36WuWK0"
+}
+
+###
+
+GET http://127.0.0.1:8000/ml/test/
+content-type: application/json
+
+{
+    "id": "9"
 }

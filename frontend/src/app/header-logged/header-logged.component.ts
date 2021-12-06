@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-logged',
@@ -6,10 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./header-logged.component.sass']
 })
 export class HeaderLoggedComponent implements OnInit {
-
-  constructor() { }
+  faPowerOff = faPowerOff;
+  constructor(private service: Router) { }
   @Input() user:any
   ngOnInit(): void {
   }
+  logOut(){
+    window.localStorage.removeItem('token')
+    this.service.navigate(['login'])
 
+  }
 }

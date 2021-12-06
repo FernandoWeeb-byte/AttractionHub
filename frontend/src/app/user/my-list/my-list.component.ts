@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/auth-service.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-my-list',
   templateUrl: './my-list.component.html',
@@ -7,7 +9,7 @@ import { AuthServiceService } from 'src/app/auth-service.service';
 })
 export class MyListComponent implements OnInit {
 
-  constructor(private service: AuthServiceService) { }
+  constructor(private service: AuthServiceService, private router: Router) { }
   type:any = 'all'
   token:any
   res:any
@@ -35,5 +37,8 @@ export class MyListComponent implements OnInit {
     console.log(this.list)
   }
   
-
+  async onAtt(id:any){
+    window.localStorage.setItem('id',id)
+    this.router.navigate(['attraction'])
+  }
 }

@@ -40,9 +40,10 @@ class AttractionView(APIView):
 
         user = permission(token)
         #print(request.data)
-        genres = request.data['genre']
-        streams = request.data['stream']
-        
+        genres = request.data.getlist('genre')
+        streams = request.data.getlist('stream')
+        print(genres)
+        print(streams)
         for g in genres:
             Genre.objects.get_or_create(title=g)
         for s in streams:
@@ -103,3 +104,21 @@ class AttractionView(APIView):
 
         return  JsonResponse({"msg": "deleted!",'status': 200})
     
+class DatabaseView(APIView):
+    def get(self,request):
+        id = request.data['id']
+        att = Attraction.objects.get(id=id )
+        #print(att.values())
+        
+        genres = []
+        for genre in att.genre.values():
+            genres.append(genre['title'])
+        
+        streams = []
+        for stream in att.stream.values():
+            streams.append(stream['title'])
+
+        data = {'title':att.title, 'desc':att.desc,'urlImg':att.urlImg,
+        'attractionType':att.attractionType,'rating':att.rating,'genre':genres,
+        'stream': streams, 'score': att.score, 'status': att.status }
+        return JsonResponse({'data': data, 'status': 200})

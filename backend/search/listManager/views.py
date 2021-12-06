@@ -15,6 +15,7 @@ class AnimeView(APIView):
         print(request.data)
         
         genres = request.data.getlist('genre')
+        print("adicionar no banco search",genres)
         for g in genres:
             try:
                 var = Genre.objects.get(title=g)
@@ -48,6 +49,7 @@ class AnimeView(APIView):
                 attraction.genre.add(g)
             for s in streams:
                 attraction.stream.add(s)
+
             attraction.save()
             resp = Response(status=200)
            
@@ -142,10 +144,18 @@ class SearchView(APIView):
 class DatabaseView(APIView):
     def get(self,request):
         id = request.data['id']
-        att = Attraction.objects.get(id=id )
-        #print(att.values())
+        att = Attraction.objects.get(id=id)
+        genres = []
+        for genre in att.genre.values():
+            genres.append(genre['title'])
         
-        data = {'title':att.title, 'desc':att.desc,'urlImg':att.urlImg,
-        'attractionType':att.attractionType,'rating':att.rating,'genre':list(att.genre.values()),
-        'stream':list(att.stream.values()) }
+        streams = []
+        for stream in att.stream.values():
+            streams.append(stream['title'])
+            
+        #print(att.values())
+        print(genres)
+        data = {'title': att.title, 'desc': att.desc, 'urlImg': att.urlImg,
+        'attractionType': att.attractionType, 'rating': att.rating, 'genre': genres,
+        'stream': streams }
         return JsonResponse({'data': data, 'status': 200})

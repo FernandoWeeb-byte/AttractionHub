@@ -38,8 +38,8 @@ class UserListGateway(Resource):
         parser.add_argument('desc')
         parser.add_argument('urlImg')
         parser.add_argument('rating')
-        parser.add_argument('genre')
-        parser.add_argument('stream')
+        parser.add_argument('genre', action="append")
+        parser.add_argument('stream', action="append")
         parser.add_argument('attractionType')
        
         args = parser.parse_args()
@@ -80,7 +80,7 @@ class UserListGateway(Resource):
         res = requests.delete(URL + 'list/attraction/', data=args)
         resp = make_response(res.json(), 200)
         return resp
-        pass
+        
 
 class RegisterGateway(Resource):
     def get(self):
@@ -118,3 +118,30 @@ class LoginGateway(Resource):
         res = requests.post(URL + 'auth/login/', data=args)
         resp = make_response(res.json(), 200)
         return resp
+
+class UserAttraction(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('token', location='headers')
+        parser.add_argument('id', location="headers")
+        args = parser.parse_args()
+        res = requests.get(URL + 'list/database/', data=args)
+        resp = make_response(res.json(), 200)
+        return resp
+
+
+class MLGateway(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('title', location="headers")
+        args = parser.parse_args()
+        print(args)
+        res = requests.get(URL + 'ml/test/', data=args)
+        resp = make_response(res.json(), 200)
+        return resp
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('token')
+        args = parser.parse_args()
+        res = requests.post(URL + 'ml/test/', data=args)
+        resp = make_response(res.json(), 200)
