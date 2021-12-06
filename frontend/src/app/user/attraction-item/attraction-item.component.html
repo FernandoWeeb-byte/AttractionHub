@@ -1,9 +1,14 @@
 <div class="container">
-    <p>{{status}}</p>
-    <img class="image" src="urlImg"/>
-    <p style="color: white;">{{title}}</p>
-    <div class="scoreContainer">
-        <mat-icon>stars</mat-icon>
-        <p style="color: white;">{{score}}</p>
+    <div class="status" *ngIf="status">
+        <span>{{status}}</span>
     </div>
+    <img class="image" [src]="urlImg"/>
+    <div class="title">
+        <span>{{title}}</span>
+    </div>
+    <div class="scoreContainer">
+        <fa-icon style="color: yellow;" [icon]="faStar"*ngIf="score"></fa-icon>
+        <p style="color: white;" *ngIf="score">{{score}}</p>
+    </div>
+    <fa-icon style="color: red; font-size: 20px; cursor: pointer;" [icon]="faTrashAlt"></fa-icon>
 </div>

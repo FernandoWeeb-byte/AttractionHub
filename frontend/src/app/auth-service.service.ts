@@ -97,4 +97,26 @@ export class AuthServiceService {
     }).toPromise()
     return result
   }
+
+  async searchListId(token:any,id:any){
+    const result =  await this.http.get<any>(this.API + '/attraction/',{
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        token: token,
+        id: id
+      })
+    }).toPromise()
+    return result
+  }
+
+  async updateList(token:any, title:any, score:any,status:any, like:any){
+    const result =  await this.http.put<any>(this.API + '/manager/',{
+      token: token,
+      title: title,
+      score: score,
+      like: like,
+      status: status
+    } ).toPromise()
+    return result
+  }
 }

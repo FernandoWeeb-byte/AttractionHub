@@ -5,6 +5,8 @@ import { CadastroTelaComponent } from './cadastro-login/cadastro-tela/cadastro-t
 import { HomeComponent } from './home/home.component';
 import { MyListComponent } from './user/my-list/my-list.component';
 import { AttractionComponent } from './user/attraction/attraction.component';
+import { AttractionInfoComponent } from './user/attraction-info/attraction-info.component';
+
 
 
 const routes: Routes = [
@@ -12,7 +14,7 @@ const routes: Routes = [
   {path: 'cadastro', component: CadastroTelaComponent},
   {path: 'login', component: LoginTelaComponent},
   {path: 'list', component: MyListComponent},
-  {path: 'attraction',component: AttractionComponent }
+  {path: 'attraction', component: AttractionInfoComponent }
   
 ];
 

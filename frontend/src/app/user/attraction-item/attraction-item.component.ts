@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { faStar, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-attraction-item',
@@ -6,6 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./attraction-item.component.sass']
 })
 export class AttractionItemComponent implements OnInit {
+
+  faStar = faStar;
+  faTrashAlt = faTrashAlt;
 
   constructor() { }
 

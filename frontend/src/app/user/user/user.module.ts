@@ -5,6 +5,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatSelectModule} from '@angular/material/select'; 
 
 
 import { MyListComponent } from '../my-list/my-list.component';
@@ -30,7 +32,10 @@ import { AttractionInfoComponent } from '../attraction-info/attraction-info.comp
     MatButtonModule,
     MatButtonToggleModule,
     MatDividerModule,
-    MatIconModule
+    MatIconModule,
+    FontAwesomeModule,
+    MatSelectModule
+
   ],
   exports:[
     HeaderLoggedComponent,

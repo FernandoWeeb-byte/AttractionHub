@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
+  type = 'movie'
+  res:any
+  search:boolean = false
 
   att = new FormGroup({
     attraction: new FormControl('')
@@ -18,14 +21,14 @@ export class SearchComponent implements OnInit {
   constructor(private service: AuthServiceService, private router: Router) { }
 
   ngOnInit(): void {
+
   }
-  type = 'anime'
-  res:any
-  search:boolean = false
+  
+
   async onSubmit(){
     console.log(this.att.value.attraction)
     try{
-      this.res = await this.service.search(this.att.value.attraction,this.type)
+      this.res = await this.service.search(this.att.value.attraction, this.type)
     }catch(error){
       console.log(error)
     }
@@ -34,11 +37,12 @@ export class SearchComponent implements OnInit {
     this.res = this.res.data
     this.search = false
   }
+
   onClick(id:any){
     window.localStorage.setItem('id',id)
-    console.log(id)
     this.search = true
   }
+
   changeType(tp:any){
     this.type = tp
   }

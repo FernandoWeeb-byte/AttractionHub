@@ -38,8 +38,8 @@ class UserListGateway(Resource):
         parser.add_argument('desc')
         parser.add_argument('urlImg')
         parser.add_argument('rating')
-        parser.add_argument('genre')
-        parser.add_argument('stream')
+        parser.add_argument('genre', action="append")
+        parser.add_argument('stream', action="append")
         parser.add_argument('attractionType')
        
         args = parser.parse_args()
@@ -80,7 +80,7 @@ class UserListGateway(Resource):
         res = requests.delete(URL + 'list/attraction/', data=args)
         resp = make_response(res.json(), 200)
         return resp
-        pass
+        
 
 class RegisterGateway(Resource):
     def get(self):
@@ -116,5 +116,15 @@ class LoginGateway(Resource):
         parser.add_argument('password',required=True)
         args = parser.parse_args()
         res = requests.post(URL + 'auth/login/', data=args)
+        resp = make_response(res.json(), 200)
+        return resp
+
+class UserAttraction(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('token', location='headers')
+        parser.add_argument('id', location="headers")
+        args = parser.parse_args()
+        res = requests.get(URL + 'list/database/', data=args)
         resp = make_response(res.json(), 200)
         return resp

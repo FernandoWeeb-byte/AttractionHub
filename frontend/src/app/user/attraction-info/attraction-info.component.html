@@ -1,1 +1,28 @@
-<p>attraction-info works!</p>
+<app-header-logged [user] = "user"></app-header-logged>
+<div class="container">
+    <app-attraction (obj) = "obj = $event">
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label style="color: white;">Your Status</mat-label>
+                <mat-select (selectionChange)="onChangeStatus($event.value)" [(value)]="status">
+                  <mat-option>None</mat-option>
+                  <mat-option value="Watching">Watching</mat-option>
+                  <mat-option value="Watched">Watched</mat-option>
+                  <mat-option value="Plan to Watch">Plan to Watch</mat-option>
+                  <mat-option value="Dropped">Dropped</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label style="color: white;">Score</mat-label>
+                <mat-select (selectionChange)="onChangeScore($event.value)" [(value)]="score" >
+                <mat-option *ngFor="let s of scores" [value]="s" >{{s}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="like">
+                <fa-icon (click)="onLike('1')" [ngStyle]="like===true ? {'color': 'blue'}: {'color':'white'}" [icon]="faThumbsUp"></fa-icon>
+                <fa-icon (click)="onLike('2')" [ngStyle]="like===false ? {'color': 'red'}: {'color': 'white'}" [icon]="faThumbsDown"></fa-icon>
+            </div>
+        </div>
+    </app-attraction>
+</div>
+

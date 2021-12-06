@@ -1,33 +1,28 @@
 <div class="attractionContainer">
     <div class="container">
-        <div class="imgContainer">
-            <img class="attImg"src="att.urlImg"/>
-        </div>
+        <img class="imgContainer" [src]="att.urlImg"/>
         <div class="infoContainer">
             <h1 style="color: white;">{{att.title}}</h1>
             <p style="color: white;">{{att.desc}}</p>
             <div class="genreContainer">
-                <div class="genreCard"  *ngFor="let item of att.genre ">
-                    <p style="color: white;">
-                        {{item.title}}
-                    </p>
+                <div class="genreCard" *ngFor="let item of att.genre">
+                    <span>{{item}}</span>
                 </div>
             </div>
         </div>
     </div>
+    <ng-content></ng-content>
     <div class="streamInfo">
-        <p style="color: white;">YOU CAN WATCH IN</p>
-        <div class="buttonContainer">
-            <div class="streamContainer">
-                <div class="stream" *ngFor="let stream of att.stream" [ngSwitch]="stream.title">
-                    <img class="image" *ngSwitchCase="'Crunchyroll'" src="../../../assets/streams/crunchyroll.png"/>
-                    <img class="image" *ngSwitchCase="'Netflix'" src="../../../assets/streams/netflix.png"/>
-                    <img class="image" *ngSwitchCase="'Funimation Now'" src="../../../assets/streams/funimation.png"/>
-                    <img class="image" *ngSwitchCase="'Disney+'" src="../../../assets/streams/disney.png"/>
-                    <img class="image" *ngSwitchCase="'HBO Max'" src="../../../assets/streams/hbo.png"/>
-                </div>
+        <h3 style="color: white; margin-top: 20px;">YOU CAN WATCH IN</h3>
+        <div class="streamContainer">
+            <div class="stream" *ngFor="let stream of att.stream" [ngSwitch]="stream">
+                <img class="image" *ngSwitchCase="'Crunchyroll'" src="../../../assets/streams/crunchyroll.png"/>
+                <img class="image" *ngSwitchCase="'Netflix'" src="../../../assets/streams/netflix.png"/>
+                <img class="image" *ngSwitchCase="'Funimation Now'" src="../../../assets/streams/funimation.png"/>
+                <img class="image" *ngSwitchCase="'Disney+'" src="../../../assets/streams/disney.png"/>
+                <img class="image" *ngSwitchCase="'HBO Max'" src="../../../assets/streams/hbo.png"/>
             </div>
-            <button (click)="onClick()" mat-raised-button color="primary">ADD TO YOUR LIST</button>
         </div>
     </div>
+    <button (click)="onClick()" mat-raised-button color="primary">ADD TO YOUR LIST</button>
 </div>
