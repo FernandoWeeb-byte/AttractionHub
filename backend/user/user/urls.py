@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authentication.urls')),
     path('list/', include('attractionsList.urls')),
+    path('ml/', include('machineLearning.urls'))
 ]
