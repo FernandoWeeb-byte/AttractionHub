@@ -10,5 +10,5 @@
         <fa-icon style="color: yellow;" [icon]="faStar"*ngIf="score"></fa-icon>
         <p style="color: white;" *ngIf="score">{{score}}</p>
     </div>
-    <fa-icon style="color: red; font-size: 20px; cursor: pointer;" [icon]="faTrashAlt"></fa-icon>
+    <fa-icon (click)="delete()" style="color: red; font-size: 20px; cursor: pointer;" [icon]="faTrashAlt"></fa-icon>
 </div>

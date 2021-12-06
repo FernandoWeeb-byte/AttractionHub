@@ -43,7 +43,7 @@ export class AttractionComponent implements OnInit {
   res:any
   async onClick(){
     try{
-      console.log(this.att.genre)
+      console.log(this.att)
       this.res = await this.service.addToList(this.att)
     }catch(error){
       console.log(error)

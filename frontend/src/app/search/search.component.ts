@@ -13,6 +13,7 @@ export class SearchComponent implements OnInit {
   type = 'movie'
   res:any
   search:boolean = false
+  ml:any
 
   att = new FormGroup({
     attraction: new FormControl('')
@@ -37,10 +38,17 @@ export class SearchComponent implements OnInit {
     this.res = this.res.data
     this.search = false
   }
-
-  onClick(id:any){
+  gosta:any
+  async onClick(title:any,id:any){
     window.localStorage.setItem('id',id)
     this.search = true
+    console.log(title)
+    this.ml = await this.service.mlGet(title)
+    this.ml = this.ml.data
+    this.gosta = this.ml[1] * 100
+
+
+    console.log(this.ml)
   }
 
   changeType(tp:any){

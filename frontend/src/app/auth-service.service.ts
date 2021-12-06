@@ -98,6 +98,17 @@ export class AuthServiceService {
     return result
   }
 
+  async deleteFromList(title:any, token:any){
+    const result = await this.http.delete<any>(this.API + '/manager/',{
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        token: token,
+        title: title
+      })
+    }).toPromise()
+    return result
+  }
+
   async searchListId(token:any,id:any){
     const result =  await this.http.get<any>(this.API + '/attraction/',{
       headers: new HttpHeaders({
@@ -117,6 +128,21 @@ export class AuthServiceService {
       like: like,
       status: status
     } ).toPromise()
+    return result
+  }
+
+  async mlPost(token:any){
+    const result =  await this.http.post<any>(this.API + '/ml/', {token:token}).toPromise()
+    return result
+  }
+
+  async mlGet(title:any){
+    const result = await this.http.get<any>(this.API + '/ml/',{
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        title: title
+      })
+    }).toPromise()
     return result
   }
 }

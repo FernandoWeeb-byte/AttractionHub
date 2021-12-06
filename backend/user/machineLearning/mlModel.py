@@ -91,7 +91,7 @@ def train(dataset:pd.DataFrame):
 
 def predict(ident):
     try:
-        attrac = Attraction.objects.get(id=ident)
+        attrac = Attraction.objects.get(title=ident)
     except Exception:
         raise Exception('attraction not found')
     

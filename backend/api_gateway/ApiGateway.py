@@ -128,3 +128,20 @@ class UserAttraction(Resource):
         res = requests.get(URL + 'list/database/', data=args)
         resp = make_response(res.json(), 200)
         return resp
+
+
+class MLGateway(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('title', location="headers")
+        args = parser.parse_args()
+        print(args)
+        res = requests.get(URL + 'ml/test/', data=args)
+        resp = make_response(res.json(), 200)
+        return resp
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('token')
+        args = parser.parse_args()
+        res = requests.post(URL + 'ml/test/', data=args)
+        resp = make_response(res.json(), 200)
